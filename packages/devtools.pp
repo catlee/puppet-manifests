@@ -242,7 +242,7 @@ class devtools {
                         "clang-2.9.dmg":
                             provider    => pkgdmg,
                             ensure      => installed,
-                            creates     => "/tools/clang-2.9/bin/clang";
+                            creates     => "/tools/clang-2.9/bin/clang",
                             source      => "${platform_httproot}/DMGs/clang-2.9.dmg";
                     }
                     file {
