@@ -8,7 +8,6 @@ import "includes/*"
 import "os/*"
 import "classes/*"
 import "build/*"
-import "packages/*"
 import "stage/*"
 
 # module imports
@@ -53,8 +52,7 @@ node "moz2-linux-slave09.build.mozilla.org" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave10.build.mozilla.org" inherits "centos5-i686-build" {
-    include buildslave, vm
+node "moz2-linux-slave10.build.mozilla.org" inherits "staging-build-node" {
 }
 
 node "moz2-linux-slave11.build.mozilla.org" inherits "centos5-i686-build" {
@@ -245,8 +243,7 @@ node "moz2-linux64-slave09.build.mozilla.org" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave10.build.mozilla.org" inherits "centos5-x86_64-build" {
-    include buildslave, vm
+node "moz2-linux64-slave10.build.mozilla.org" inherits "staging-build-node" {
 }
 
 node "moz2-linux64-slave11.build.mozilla.org" inherits "centos5-x86_64-build" {
@@ -449,8 +446,7 @@ node "moz2-darwin9-slave09.build.mozilla.org" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin9-slave10.build.mozilla.org" inherits "darwin9-i386-build" {
-    include buildslave
+node "moz2-darwin9-slave10.build.mozilla.org" inherits "staging-build-node" {
 }
 
 node "moz2-darwin9-slave11.build.mozilla.org" inherits "darwin9-i386-build" {
@@ -1016,8 +1012,7 @@ node "moz2-darwin10-slave09.build.mozilla.org" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin10-slave10.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
+node "moz2-darwin10-slave10.build.mozilla.org" inherits "staging-build-node" {
 }
 
 node "moz2-darwin10-slave11.build.mozilla.org" inherits "darwin10-i386-build" {
@@ -1371,7 +1366,7 @@ node "talos-r3-fed-008.build.mozilla.org" inherits "scl-test-node" {
 node "talos-r3-fed-009.build.mozilla.org" inherits "scl-test-node" {
 }
 
-node "talos-r3-fed-010.build.mozilla.org" inherits "scl-test-node" {
+node "talos-r3-fed-010.build.mozilla.org" inherits "staging-test-node" {
 }
 
 node "talos-r3-fed-011.build.mozilla.org" inherits "scl-test-node" {
@@ -1527,7 +1522,7 @@ node "talos-r3-fed64-008.build.mozilla.org" inherits "scl-test-node" {
 node "talos-r3-fed64-009.build.mozilla.org" inherits "scl-test-node" {
 }
 
-node "talos-r3-fed64-010.build.mozilla.org" inherits "scl-test-node" {
+node "talos-r3-fed64-010.build.mozilla.org" inherits "staging-test-node" {
 }
 
 node "talos-r3-fed64-011.build.mozilla.org" inherits "scl-test-node" {
@@ -1695,7 +1690,7 @@ node "talos-r3-leopard-008.build.mozilla.org" inherits "scl-test-node" {
 node "talos-r3-leopard-009.build.mozilla.org" inherits "scl-test-node" {
 }
 
-node "talos-r3-leopard-010.build.mozilla.org" inherits "scl-test-node" {
+node "talos-r3-leopard-010.build.mozilla.org" inherits "staging-test-node" {
 }
 
 node "talos-r3-leopard-011.build.mozilla.org" inherits "scl-test-node" {
@@ -1857,7 +1852,7 @@ node "talos-r3-snow-008.build.mozilla.org" inherits "scl-test-node" {
 node "talos-r3-snow-009.build.mozilla.org" inherits "scl-test-node" {
 }
 
-node "talos-r3-snow-010.build.mozilla.org" inherits "scl-test-node" {
+node "talos-r3-snow-010.build.mozilla.org" inherits "staging-test-node" {
 }
 
 node "talos-r3-snow-011.build.mozilla.org" inherits "scl-test-node" {

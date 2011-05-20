@@ -8,7 +8,6 @@ import "includes/*"
 import "os/*"
 import "classes/*"
 import "build/*"
-import "packages/*"
 import "stage/*"
 
 # module imports
@@ -281,10 +280,6 @@ node "talos-r3-fed-009.build.mozilla.org" inherits "fedora12-i686-test" {
     include talosslave
 }
 
-node "talos-r3-fed-010.build.mozilla.org" inherits "fedora12-i686-test" {
-    include talosslave
-}
-
 node "talos-r3-fed-011.build.mozilla.org" inherits "fedora12-i686-test" {
     include talosslave
 }
@@ -486,10 +481,6 @@ node "talos-r3-fed64-008.build.mozilla.org" inherits "fedora12-x86_64-test" {
 }
 
 node "talos-r3-fed64-009.build.mozilla.org" inherits "fedora12-x86_64-test" {
-    include talosslave
-}
-
-node "talos-r3-fed64-010.build.mozilla.org" inherits "fedora12-x86_64-test" {
     include talosslave
 }
 
@@ -705,10 +696,6 @@ node "talos-r3-leopard-009.build.mozilla.org" inherits "darwin9-i386-test" {
     include talosslave
 }
 
-node "talos-r3-leopard-010.build.mozilla.org" inherits "darwin9-i386-test" {
-    include talosslave
-}
-
 node "talos-r3-leopard-011.build.mozilla.org" inherits "darwin9-i386-test" {
     include talosslave
 }
@@ -913,10 +900,6 @@ node "talos-r3-snow-009.build.mozilla.org" inherits "darwin10-i386-test" {
     include talosslave
 }
 
-node "talos-r3-snow-010.build.mozilla.org" inherits "darwin10-i386-test" {
-    include talosslave
-}
-
 node "talos-r3-snow-011.build.mozilla.org" inherits "darwin10-i386-test" {
     include talosslave
 }
@@ -1098,6 +1081,10 @@ node "talos-r3-snow-055.build.mozilla.org" inherits "darwin10-i386-test" {
 }
 
 node "try-mac64-slave27.build.mozilla.org" inherits "darwin10-i386-build" {
+    include buildslave
+}
+
+node "try-mac64-slave28.build.mozilla.org" inherits "darwin10-i386-build" {
     include buildslave
 }
 

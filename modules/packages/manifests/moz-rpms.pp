@@ -1,7 +1,7 @@
 # moz-rpms.pp
 # moz-rpms rpm packages
 
-class moz-rpms {
+class packages::moz-rpms {
     Package{ provider => rpm, ensure => installed }
 
     case $hardwaremodel {
@@ -20,7 +20,7 @@ class moz-rpms {
             source => "${platform_httproot}/RPMs/ccache-3.0.1-99.11.$rpm_arch.rpm",
             ensure => latest;
     }
-    install_rpm {
+    packages::install_rpm {
         "valgrind":
             version => "3.6.0-1",
             creates => "/usr/bin/valgrind",
@@ -31,16 +31,14 @@ class moz-rpms {
         "valgrind-devel":
             version => "3.6.0-1",
             creates => "/usr/include/valgrind/valgrind.h",
-            require => Install_rpm["valgrind"];
+            require => Packages::Install_rpm["valgrind"];
     }
     exec {
-        "/usr/bin/ccache -M 2G":
+        "/usr/bin/ccache -M 5G":
             environment => ["CCACHE_DIR=/builds/ccache", "CCACHE_COMPRESS=1"],
-            refreshonly => true,
             user => "cltbld",
             group => "cltbld",
-            subscribe => File["/builds/ccache"],
-            require => Package["ccache"];
+            require => [Package["ccache"], File["/builds/ccache"]];
         check-valgrind-rpms:
             command => "/bin/rpm -e --allmatches valgrind",
             onlyif => "/bin/rpm -qv valgrind | /bin/grep -q 3.2.1";
