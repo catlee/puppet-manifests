@@ -241,8 +241,11 @@ class packages::devtools {
                     package {
                         "clang-2.9.dmg":
                             provider    => pkgdmg,
+                            ensure      => absent,
+                        "clang-3.0-r131621.dmg":
+                            provider    => pkgdmg,
                             ensure      => installed,
-                            source      => "${platform_httproot}/DMGs/clang-2.9.dmg";
+                            source      => "${platform_httproot}/DMGs/clang-3.0-r131621.dmg";
                     }
                     file {
                         "/tools/python":
