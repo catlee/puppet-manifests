@@ -33,8 +33,8 @@ class packages::moz-rpms {
             creates => "/usr/include/valgrind/valgrind.h",
             require => Packages::Install_rpm["valgrind"];
         "clang":
-            version => "3.0-r131621",
-            creates => "/tools/clang-3.0/bin/clang";
+            version => "3.0-r132336",
+            creates => "/tools/clang-3.0-r132336/bin/clang";
     }
     exec {
         "/usr/bin/ccache -M 5G":
