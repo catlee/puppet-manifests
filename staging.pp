@@ -46,6 +46,9 @@ node "moz2-linux64-slave10.build.sjc1.mozilla.com" inherits "centos5-x86_64-buil
     include staging-buildslave, vm
 }
 
+node "linux64-slave02.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
+    include staging-buildslave, vm
+}
 
 node "mv-moz2-linux-ix-slave01.build.mozilla.org" inherits "centos5-i686-build" {
     include staging-buildslave, ix
