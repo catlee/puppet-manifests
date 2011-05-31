@@ -256,10 +256,6 @@ class centos5 {
             enable => 'false',
             ensure => 'stopped'
         }
-        service { 'ntpd':
-            enable => 'false',
-            ensure => 'stopped'
-        }
         service { 'cups':
             enable => 'false',
             ensure => 'stopped'
@@ -321,5 +317,6 @@ class centos5 {
     include buildslave::startup
     include buildslave::cleanup
     include network
+    include boot
     include buildslave::purgebuilds
 }

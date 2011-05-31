@@ -40,10 +40,6 @@ class osx {
                     content => template("/etc/puppet/templates/main.cf.erb"),
                     owner => "root",
                     group => "wheel";
-                "/etc/ntp.conf":
-                    source => "${platform_fileroot}/etc/ntp.conf",
-                    owner => "root",
-                    group => "wheel";
                 "/tools/dist/logs":
                     require => File["/tools/dist"],
                     owner => "cltbld",
@@ -96,10 +92,6 @@ class osx {
                     timeout => "600",
                     require => [Package["MacPorts-1.7.1-10.5-Leopard.dmg"], Install_dmg["macports-updates-10.5.dmg"], Exec["macports-subversion"]],
                     command => "/opt/local/bin/port -v install wget && /bin/sleep 10";
-                restart-ntp:
-                    subscribe => File["/etc/ntp.conf"],
-                    refreshonly => true,
-                    command => "/bin/launchctl stop org.ntp.ntpd && /bin/launchctl start org.ntp.ntpd";
             }
         }
         "10.2.0": {
@@ -147,19 +139,6 @@ class osx {
         "/opt/local/bin/autoconf-2.13":
             ensure => "/opt/local/bin/autoconf213",
             require => File["/opt/local/bin"];
-        "/usr/local/nagios/etc/nrpe.plist":
-            source => "${platform_fileroot}/usr/local/nagios/etc/nrpe.plist",
-            owner => "root",
-            group => "wheel";
-        "/usr/local/nagios/etc/nrpe.cfg":
-            source => "${platform_fileroot}/usr/local/nagios/etc/nrpe.cfg",
-            owner => "root",
-            group => "wheel",
-            require => [File["/usr/local/nagios/etc/nrpe.plist"], Install_dmg["nrpe-i386.dmg"]];
-        "/usr/local/nagios-i386":
-            ensure => "nagios",
-            owner => "root",
-            group => "wheel";
         "/opt":
             ensure => directory,
             owner => "root",
@@ -200,10 +179,6 @@ class osx {
             mode => "4755",
             require => File['/Users/cltbld/bin'],
             source => "${platform_fileroot}/Users/cltbld/bin/chown_revert";
-        "/usr/local/bin/setup-nagios-user.sh":
-            owner => "root",
-            group => "staff",
-            source => "${platform_fileroot}/usr/local/bin/setup-nagios-user.sh";
         "/usr/local/bin/check-for-package.sh":
             owner => "root",
             group => "staff",
@@ -264,22 +239,12 @@ class osx {
             mode => 600,
             source => "${platform_fileroot}/Library/Preferences/com.apple.VNCSettings.txt";
     }
-
-    exec { 
-        setup-nagios-user:
-            creates => "/var/db/.puppet_nagios_user_setup",
-            command => "/usr/local/bin/setup-nagios-user.sh",
-            require => File["/etc/fstab"],
-            subscribe => Install_dmg["nrpe-i386.dmg"];
-        enable-nrpe:
-            creates => "/Library/LaunchDaemons/nrpe.plist",
-            command => "/usr/local/nagios/sbin/enablenrpe",
-            subscribe => [Install_dmg["nrpe-i386.dmg"], File["/usr/local/nagios/etc/nrpe.plist"]];
-    }
-    install_dmg {
-        "nrpe-i386.dmg":
-            creates => "/usr/local/nagios-i386/sbin/nrpe";
-    }
+    exec {
+        disable-indexing:
+            command => "/usr/bin/mdutil -a -i off";
+        remove-index:
+            command => "/usr/bin/mdutil -a -E";
+    } 
     package {
         "yasm-1.1.0.dmg":
             provider => pkgdmg,

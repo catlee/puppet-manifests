@@ -20,6 +20,7 @@ node "masternode" {
     # tell, are caused by http://projects.puppetlabs.com/issues/2423.
     # This is supposedly fixed in puppet 0.25, so worth revisiting this once we
     # upgrade
+    $slaveType = "master"
     include packages
 }
 

@@ -212,39 +212,19 @@ node "moz2-darwin10-slave50.build.mozilla.org" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin10-slave53.build.mozilla.org" inherits "darwin10-i386-build" {
+node "moz2-darwin10-slave53.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin10-slave54.build.mozilla.org" inherits "darwin10-i386-build" {
+node "moz2-darwin10-slave54.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin10-slave55.build.mozilla.org" inherits "darwin10-i386-build" {
+node "moz2-darwin10-slave55.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "moz2-darwin10-slave56.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "moz2-darwin10-slave57.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "moz2-darwin10-slave58.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "moz2-darwin10-slave59.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "moz2-darwin10-slave60.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "moz2-darwin10-slave61.build.mozilla.org" inherits "darwin10-i386-build" {
+node "moz2-darwin10-slave56.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
@@ -1080,43 +1060,23 @@ node "talos-r3-snow-055.build.mozilla.org" inherits "darwin10-i386-test" {
     include talosslave
 }
 
-node "try-mac64-slave27.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave27.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave28.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave28.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave29.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave29.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave30.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave30.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave31.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "try-mac64-slave32.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "try-mac64-slave33.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "try-mac64-slave34.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "try-mac64-slave35.build.mozilla.org" inherits "darwin10-i386-build" {
-    include buildslave
-}
-
-node "try-mac64-slave36.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave31.build.mtv1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 

@@ -24,397 +24,397 @@ node "linux64-ref-platform.build.mozilla.org" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave01.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave01.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave02.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave02.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave05.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave05.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave06.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave06.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave07.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave07.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave08.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave08.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave09.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave09.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave10.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux-slave10.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
-node "moz2-linux-slave11.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave11.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave12.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave12.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave13.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave13.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave14.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave14.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave15.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave15.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave16.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave16.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave18.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave18.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave19.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave19.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave20.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave20.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave21.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave21.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave22.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave22.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave23.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave23.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave24.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave24.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave25.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave25.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave26.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave26.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave27.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave27.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave28.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave28.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave29.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave29.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave30.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave30.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave31.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave31.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave32.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave32.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave33.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave33.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave34.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave34.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave35.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave35.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave36.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave36.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave37.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave37.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave38.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave38.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave39.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave39.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave40.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave40.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave41.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave41.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave42.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave42.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave43.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave43.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave44.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave44.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave45.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave45.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave46.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave46.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave47.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave47.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave48.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave48.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave49.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave49.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux-slave50.build.mozilla.org" inherits "centos5-i686-build" {
+node "moz2-linux-slave50.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave01.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave01.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave02.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave02.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave03.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave03.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave04.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave04.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave05.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave05.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave06.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave06.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave08.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave08.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave09.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave09.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave10.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux64-slave10.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
-node "moz2-linux64-slave11.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave11.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "moz2-linux64-slave12.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "moz2-linux64-slave12.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "linux-hgwriter-slave01.build.mozilla.org" inherits "centos5-i686-build" {
+node "linux-hgwriter-slave01.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "linux-hgwriter-slave02.build.mozilla.org" inherits "centos5-i686-build" {
+node "linux-hgwriter-slave02.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave01.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave01.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave02.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave02.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave03.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave03.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave04.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave04.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave06.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave06.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave07.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave07.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave08.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave08.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave09.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave09.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave10.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave10.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave11.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave11.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave12.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave12.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave13.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave13.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave14.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave14.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave15.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave15.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave16.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave16.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave17.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave17.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave18.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave18.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave19.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave19.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave20.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave20.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave21.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave21.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave22.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave22.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave23.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave23.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave24.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave24.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave25.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave25.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave26.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave26.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave27.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave27.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave28.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave28.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave29.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave29.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux-slave30.build.mozilla.org" inherits "centos5-i686-build" {
+node "try-linux-slave30.build.sjc1.mozilla.com" inherits "centos5-i686-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave01.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave01.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave02.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave02.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave03.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave03.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave04.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave04.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave05.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave05.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave06.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave06.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave07.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave07.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave08.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave08.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave09.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave09.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
-node "try-linux64-slave10.build.mozilla.org" inherits "centos5-x86_64-build" {
+node "try-linux64-slave10.build.sjc1.mozilla.com" inherits "centos5-x86_64-build" {
     include buildslave, vm
 }
 
@@ -649,347 +649,332 @@ node "moz2-darwin9-slave72.build.mozilla.org" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve06.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve06.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve07.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve07.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve08.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve08.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve09.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve09.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve10.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve10.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve11.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve11.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve12.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve12.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve15.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve15.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve16.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve16.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve17.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve17.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve18.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve18.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve19.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve19.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve20.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve20.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve21.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve21.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve22.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve22.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve23.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve23.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "bm-xserve24.build.mozilla.org" inherits "darwin9-i386-build" {
+node "bm-xserve24.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave01.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave01.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave02.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave02.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave03.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave03.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave04.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave04.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave06.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave06.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave07.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave07.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave08.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave08.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave09.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave09.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave10.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave10.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave11.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave11.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave12.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave12.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave13.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave13.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave14.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave14.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave15.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave15.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave16.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave16.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave17.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave17.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave18.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave18.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave19.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave19.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave30.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave30.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave31.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave31.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave32.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave32.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave33.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave33.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave34.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave34.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave35.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave35.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave36.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave36.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave37.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave37.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave38.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave38.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave39.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave39.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave40.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave40.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave41.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave41.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave42.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave42.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave43.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave43.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave44.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave44.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave45.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave45.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave46.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave46.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac-slave47.build.mozilla.org" inherits "darwin9-i386-build" {
+node "try-mac-slave47.build.sjc1.mozilla.com" inherits "darwin9-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave01.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave01.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave02.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave02.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave03.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave03.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave04.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave04.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave05.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave05.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave06.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave06.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave07.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave07.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave08.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave08.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave09.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave09.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave10.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave10.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave11.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave11.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave12.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave12.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave13.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave13.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave14.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave14.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave15.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave15.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave16.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave16.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave17.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave17.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave18.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave18.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave19.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave19.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave20.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave20.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave21.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave21.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave22.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave22.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave23.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave23.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave24.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave24.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave25.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave25.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave26.build.mozilla.org" inherits "darwin10-i386-build" {
+node "try-mac64-slave26.build.sjc1.mozilla.com" inherits "darwin10-i386-build" {
     include buildslave
 }
 
-node "try-mac64-slave27.build.mozilla.org" inherits "mv-build-node" {
+node "try-mac64-slave27.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "try-mac64-slave29.build.mozilla.org" inherits "mv-build-node" {
+node "try-mac64-slave29.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "try-mac64-slave30.build.mozilla.org" inherits "mv-build-node" {
+node "try-mac64-slave30.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "try-mac64-slave31.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "try-mac64-slave32.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "try-mac64-slave33.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "try-mac64-slave34.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "try-mac64-slave35.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "try-mac64-slave36.build.mozilla.org" inherits "mv-build-node" {
+node "try-mac64-slave31.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
 node "moz2-darwin10-slave05.build.mozilla.org" inherits "darwin10-i386-build" {
@@ -1315,31 +1300,16 @@ node "moz2-darwin10-slave49.build.mozilla.org" inherits "mv-build-node" {
 node "moz2-darwin10-slave50.build.mozilla.org" inherits "mv-build-node" {
 }
 
-node "moz2-darwin10-slave53.build.mozilla.org" inherits "mv-build-node" {
+node "moz2-darwin10-slave53.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "moz2-darwin10-slave54.build.mozilla.org" inherits "mv-build-node" {
+node "moz2-darwin10-slave54.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "moz2-darwin10-slave55.build.mozilla.org" inherits "mv-build-node" {
+node "moz2-darwin10-slave55.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
-node "moz2-darwin10-slave56.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "moz2-darwin10-slave57.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "moz2-darwin10-slave58.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "moz2-darwin10-slave59.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "moz2-darwin10-slave60.build.mozilla.org" inherits "mv-build-node" {
-}
-
-node "moz2-darwin10-slave61.build.mozilla.org" inherits "mv-build-node" {
+node "moz2-darwin10-slave56.build.mtv1.mozilla.com" inherits "mv-build-node" {
 }
 
 node "talos-r3-fed-ref.build.mozilla.org" inherits "scl-test-node" {
@@ -2005,16 +1975,16 @@ node "byob-repack04.build.mozilla.org" inherits "mv-build-node" {
 node "byob-repack05.build.mozilla.org" inherits "mv-build-node" {
 }
 
-node "moz2-linux-slave03.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux-slave03.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
-node "moz2-linux-slave04.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux-slave04.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
-node "moz2-linux-slave17.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux-slave17.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
-node "moz2-linux64-slave07.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux64-slave07.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
 node "mv-moz2-linux-ix-slave01.build.mozilla.org" inherits "staging-build-node" {
@@ -2035,7 +2005,7 @@ node "linux-ix-slave04.build.mozilla.org" inherits "staging-build-node" {
 node "linux-ix-slave05.build.mozilla.org" inherits "staging-build-node" {
 }
 
-node "moz2-linux-slave51.build.mozilla.org" inherits "staging-build-node" {
+node "moz2-linux-slave51.build.sjc1.mozilla.com" inherits "staging-build-node" {
 }
 
 node "moz2-darwin9-slave03.build.mozilla.org" inherits "staging-build-node" {
