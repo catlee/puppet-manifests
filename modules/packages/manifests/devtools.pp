@@ -260,10 +260,10 @@ class packages::devtools {
                     onlyif => "/bin/test -f /opt/local/bin/hg";
             }
             package {
-                "clang-3.0-r132336.dmg":
+                "clang-3.0-r132336.moz0.dmg":
                     provider    => pkgdmg,
                     ensure      => installed,
-                    source      => "${platform_httproot}/DMGs/clang-3.0-r132336.dmg";
+                    source      => "${platform_httproot}/DMGs/clang-3.0-r132336.moz0.dmg";
             }
             install_dmg {
                 "Twisted-8.0.1.dmg":
