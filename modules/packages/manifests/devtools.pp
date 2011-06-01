@@ -32,7 +32,11 @@ class packages::devtools {
                     ensure => latest,
                     provider => rpm;
             }
-
+            install_rpm {
+                "clang":
+                    version => "3.0-r132336.moz0",
+                    creates => "/tools/clang-3.0/bin/clang";
+            }
             case $hardwaremodel {
         
                 "x86_64": {
