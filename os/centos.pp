@@ -65,6 +65,15 @@ class centos5 {
         }
         default: {
             file {
+                # This is a one-off deletion added while deploying bug 557260
+                # We had to delete a bunch of old scratchbox directories
+                # because they would break builds, and it was easier to move
+                # them to this directory and have Puppet clean them up than to
+                # wait for deletes to finish over ssh sessions.
+                "/builds/slave/DELETETHIS":
+                    ensure => absent,
+                    force => true;
+
                 "/home/cltbld/.android":
                     mode   => 775,
                     owner  => cltbld,
