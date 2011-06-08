@@ -127,7 +127,7 @@ node "buildbot-master15" inherits "masternode" {
         "bm15-tests1-windows":
             http_port => 8201,
             master_type => "tests",
-            basedir => "tests1";
+            basedir => "tests1-windows";
     }
 }
 
@@ -137,7 +137,7 @@ node "buildbot-master16" inherits "masternode" {
         "bm16-tests1-windows":
             http_port => 8201,
             master_type => "tests",
-            basedir => "tests1";
+            basedir => "tests1-windows";
     }
 }
 
