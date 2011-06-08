@@ -124,7 +124,7 @@ node "buildbot-master14" inherits "masternode" {
 node "buildbot-master15" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm15-tests1":
+        "bm15-tests1-windows":
             http_port => 8201,
             master_type => "tests",
             basedir => "tests1";
@@ -134,7 +134,7 @@ node "buildbot-master15" inherits "masternode" {
 node "buildbot-master16" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm16-tests1":
+        "bm16-tests1-windows":
             http_port => 8201,
             master_type => "tests",
             basedir => "tests1";
@@ -144,7 +144,7 @@ node "buildbot-master16" inherits "masternode" {
 node "buildbot-master17" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm17-tests1":
+        "bm17-tests1-osx":
             http_port => 8201,
             master_type => "tests",
             basedir => "tests1";
