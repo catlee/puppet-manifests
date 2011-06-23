@@ -26,7 +26,12 @@ class selfserve-agent {
     }
     service {
         "selfserve-agent":
-            require => File["/etc/init.d/selfserve-agent"],
+            require => [
+                    File["/etc/init.d/selfserve-agent"],
+                    File["$selfserve_dir/run_agent.sh"],
+                    Exec["install-buildapi"],
+                    Exec["install-buildbot"]
+                    ],
             ensure => running,
             enable => true;
     }
@@ -36,19 +41,33 @@ class selfserve-agent {
             creates => "$selfserve_dir/lib",
             command => "/usr/bin/virtualenv-2.6 $selfserve_dir",
             user => "cltbld";
+        "clone-buildbot":
+            require => [
+                        Package["mercurial"],
+                        Exec["selfserve-virtualenv"],
+                       ],
+            creates => "$selfserve_dir/buildbot",
+            command => "/usr/bin/hg clone -r production-0.8 http://hg.mozilla.org/build/buildbot $selfserve_dir/buildbot",
+            user => "cltbld";
+        "install-buildbot":
+            require => Exec["clone-buildbot"],
+            creates => "$selfserve_dir/bin/buildbot",
+            command => "$selfserve_dir/bin/python setup.py install",
+            cwd => "$selfserve_dir/buildbot/master",
+            user => "cltbld";
         "clone-buildapi":
             require => [
                         Package["mercurial"],
-                        Exec["virtualenv"],
+                        Exec["selfserve-virtualenv"],
                        ],
             creates => "$selfserve_dir/buildapi",
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi $selfserve_dir/buildapi",
             user => "cltbld";
         "install-buildapi":
             require => Exec["clone-buildapi"],
-            creates => "$selfserve_dir/buildapi/lib/python2.6/site-packages/buildapi.egg-link",
-            command => "$selfserve_dir/bin/python $selfserve_dir/buildapi/setup.py develop",
-            cwd => $selfserve_dir,
+            creates => "$selfserve_dir/lib/python2.6/site-packages/buildapi.egg-link",
+            command => "$selfserve_dir/bin/python setup.py develop",
+            cwd => "$selfserve_dir/buildapi",
             user => "cltbld";
     }
 }
