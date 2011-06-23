@@ -55,11 +55,10 @@ class selfserve-agent {
         "install-buildbot":
             require => Exec["clone-buildbot"],
             creates => "$selfserve_dir/bin/buildbot",
-            command => "$selfserve_dir/bin/python setup.py install",
-            cwd => "$selfserve_dir/buildbot/master",
+            command => "$selfserve_dir/bin/pip install --no-index --find-links=$python_package_dir -e buildbot/master",
+            cwd => $selfserve_dir,
             environment => [
                 "PIP_DOWNLOAD_CACHE=$selfserve_dir/pip_cache",
-                "PIP_FLAGS=--no-deps --no-index --find-links=$python_package_dir",
             ],
             user => "cltbld";
 
@@ -75,12 +74,11 @@ class selfserve-agent {
         "install-buildapi":
             require => Exec["clone-buildapi"],
             creates => "$selfserve_dir/lib/python2.6/site-packages/buildapi.egg-link",
-            command => "$selfserve_dir/bin/python setup.py develop",
+            command => "$selfserve_dir/bin/pip install --no-index --find-links=$python_package_dir -e buildapi",
             environment => [
                 "PIP_DOWNLOAD_CACHE=$selfserve_dir/pip_cache",
-                "PIP_FLAGS=--no-deps --no-index --find-links=$python_package_dir",
             ],
-            cwd => "$selfserve_dir/buildapi",
+            cwd => $selfserve_dir,
             user => "cltbld";
     }
 }
