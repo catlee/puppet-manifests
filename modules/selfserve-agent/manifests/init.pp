@@ -4,6 +4,7 @@ class selfserve-agent {
     $plugins_dir = $nagios::service::plugins_dir
     $nagios_etcdir = $nagios::service::etcdir
     $selfserve_dir = "/builds/buildbot/selfserve-agent"
+    $python_package_dir = "$httproot/python-packages"
     file {
         "/etc/init.d/selfserve-agent":
             source => "puppet:///modules/selfserve-agent/selfserve-agent.initd",
@@ -41,6 +42,8 @@ class selfserve-agent {
             creates => "$selfserve_dir/lib",
             command => "/usr/bin/virtualenv-2.6 $selfserve_dir",
             user => "cltbld";
+
+        # We need buildbot so we can run sendchanges from the selfserve agent
         "clone-buildbot":
             require => [
                         Package["mercurial"],
@@ -54,7 +57,13 @@ class selfserve-agent {
             creates => "$selfserve_dir/bin/buildbot",
             command => "$selfserve_dir/bin/python setup.py install",
             cwd => "$selfserve_dir/buildbot/master",
+            environment => [
+                "PIP_DOWNLOAD_CACHE=$selfserve_dir/pip_cache",
+                "PIP_FLAGS=--no-deps --no-index --find-links=$python_package_dir",
+            ],
             user => "cltbld";
+
+        # Clone/install buildapi itself
         "clone-buildapi":
             require => [
                         Package["mercurial"],
@@ -67,6 +76,10 @@ class selfserve-agent {
             require => Exec["clone-buildapi"],
             creates => "$selfserve_dir/lib/python2.6/site-packages/buildapi.egg-link",
             command => "$selfserve_dir/bin/python setup.py develop",
+            environment => [
+                "PIP_DOWNLOAD_CACHE=$selfserve_dir/pip_cache",
+                "PIP_FLAGS=--no-deps --no-index --find-links=$python_package_dir",
+            ],
             cwd => "$selfserve_dir/buildapi",
             user => "cltbld";
     }
