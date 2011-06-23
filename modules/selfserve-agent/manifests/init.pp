@@ -6,7 +6,7 @@ class selfserve-agent {
             owner => "root",
             group => "root";
         "/etc/nagios/nrpe/nrpe.d/selfserve-agent.cfg":
-            source => "puppet:///modules/selfserve-agent/selfserve-agent.cfg.nagios",
+            content => template("selfserve-agent/selfserve-agent.cfg.erb"),
             notify => Service["nrpe"],
             require => Class["nagios"],
             mode => 644,
@@ -32,4 +32,5 @@ class selfserve-agent {
             creates => "/builds/buildbot/selfserve-agent/buildapi",
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi /builds/buildbot/selfserve-agent/buildapi",
             user => "cltbld";
+    }
 }
