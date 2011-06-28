@@ -24,6 +24,12 @@ class selfserve-agent {
             mode => 755,
             owner => "cltbld",
             group => "cltbld";
+        # For virtualenv
+        "/tools":
+            ensure => directory,
+            mode => 755,
+            owner => "root",
+            group => "root";
     }
     service {
         "selfserve-agent":
