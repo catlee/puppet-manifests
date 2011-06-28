@@ -46,7 +46,7 @@ class selfserve-agent {
         "clone-buildapi":
             require => [
                         Package["mercurial"],
-                        Exec["selfserve-virtualenv"],
+                        Python::Virtualenv[$selfserve_dir],
                        ],
             creates => "$selfserve_dir/buildapi",
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi $selfserve_dir/buildapi",
