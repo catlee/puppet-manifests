@@ -1,9 +1,8 @@
 #!/bin/bash
 cd <%=selfserve_dir%>
-source bin/activate
 (
 trap "rm -f agent.pid" EXIT
-python buildapi/buildapi/scripts/selfserve-agent.py -f selfserve-agent.ini -w -v >> agent.log 2>&1 &
+bin/python buildapi/buildapi/scripts/selfserve-agent.py -f selfserve-agent.ini -w -v >> agent.log 2>&1 &
 echo $! > agent.pid
 wait
 ) &

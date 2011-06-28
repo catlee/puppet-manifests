@@ -36,29 +36,12 @@ class selfserve-agent {
             ensure => running,
             enable => true;
     }
+    python::virtualenv {
+        $selfserve_dir:
+            python => "/usr/bin/python2.6",
+            packages => ["buildbot==0.8.0"];
+    }
     exec {
-        "selfserve-virtualenv":
-            require => Package["python26-virtualenv"],
-            creates => "$selfserve_dir/lib",
-            command => "/usr/bin/virtualenv-2.6 $selfserve_dir",
-            user => "cltbld";
-
-        # We need buildbot so we can run sendchanges from the selfserve agent
-        "clone-buildbot":
-            require => [
-                        Package["mercurial"],
-                        Exec["selfserve-virtualenv"],
-                       ],
-            creates => "$selfserve_dir/buildbot",
-            command => "/usr/bin/hg clone -r production-0.8 http://hg.mozilla.org/build/buildbot $selfserve_dir/buildbot",
-            user => "cltbld";
-        "install-buildbot":
-            require => Exec["clone-buildbot"],
-            creates => "$selfserve_dir/bin/buildbot",
-            command => "$selfserve_dir/bin/pip install --no-index --find-links=$python_package_dir --download-cache=pip_cache -e buildbot/master",
-            cwd => $selfserve_dir,
-            user => "cltbld";
-
         # Clone/install buildapi itself
         "clone-buildapi":
             require => [
