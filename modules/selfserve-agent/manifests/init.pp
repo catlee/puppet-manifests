@@ -19,7 +19,7 @@ class selfserve-agent {
             owner => "root",
             group => "root";
         "$selfserve_dir/run_agent.sh":
-            require => Exec["selfserve-virtualenv"],
+            require => Python::Virtualenv[$selfserve_dir],
             content => template("selfserve-agent/run_agent.sh.erb"),
             mode => 755,
             owner => "cltbld",
