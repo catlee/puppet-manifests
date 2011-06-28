@@ -31,7 +31,6 @@ class selfserve-agent {
                     File["/etc/init.d/selfserve-agent"],
                     File["$selfserve_dir/run_agent.sh"],
                     Exec["install-buildapi"],
-                    Exec["install-buildbot"]
                     ],
             ensure => running,
             enable => true;
