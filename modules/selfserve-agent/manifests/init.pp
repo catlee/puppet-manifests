@@ -48,7 +48,8 @@ class selfserve-agent {
             python => "/usr/bin/python2.6",
             packages => [
                 "buildbot==0.8.4-pre-moz1",
-                "Twisted==10.1.0"
+                "Twisted==10.1.0",
+                "zope.interface==3.6.1"
                 ];
     }
     exec {

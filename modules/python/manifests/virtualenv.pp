@@ -101,13 +101,8 @@ define python::virtualenv($python, $ensure="present", $packages, $user="root", $
 
     # instantiate the common requirements
     python::package_dir_file {
-        "pip-0.8.2.tar.gz":
-            owner => $user,
-            group => $group;
-            
-        "virtualenv.py":
-            owner => $user,
-            group => $group;
+        "pip-0.8.2.tar.gz": ;
+        "virtualenv.py": ;
     }
 
     case $ensure {
