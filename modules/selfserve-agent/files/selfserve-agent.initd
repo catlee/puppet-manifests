@@ -5,7 +5,7 @@
 ### BEGIN INIT INFO
 # Provides:          selfserve-agent
 # Required-Start:    $local_fs $network
-# Should-Start:      $remote_fs 
+# Should-Start:      $remote_fs
 # Should-Stop:       $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      K 0 1 6
@@ -37,7 +37,7 @@ stop_agent() {
     USER="$1"
     if [ -f $PIDFILE ]; then
         PID=$(cat $PIDFILE)
-	${PREFIXCMD} su -s /bin/bash -c "kill $PID" - ${USER}
+        ${PREFIXCMD} su -s /bin/bash -c "kill $PID" - ${USER}
         ret=$?
         return $?
     fi
@@ -63,31 +63,31 @@ do_stop () {
 do_restart () {
     errors=0
     if ! do_stop; then
-	return 1
+        return 1
     fi
     if ! do_start; then
-	return 1
+        return 1
     fi
     return 0
 }
 
 case "$1" in
   start)
-  	do_start
-  	exit $?
-	;;
+        do_start
+        exit $?
+        ;;
   stop)
-  	do_stop
-  	exit $?
-	;;
+        do_stop
+        exit $?
+        ;;
   restart)
-  	do_restart
-  	exit $?
-	;;
+        do_restart
+        exit $?
+        ;;
   *)
-	log_warning_msg "Usage: $0 {start|stop|restart}"
-	exit 1
-	;;
+        log_warning_msg "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
 esac
 
 exit 0
