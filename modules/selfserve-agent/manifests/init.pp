@@ -43,6 +43,8 @@ class selfserve-agent {
     }
     python::virtualenv {
         $selfserve_dir:
+            user => "cltbld",
+            group => "cltbld",
             python => "/usr/bin/python2.6",
             packages => [
                 "buildbot==0.8.4-pre-moz1",
