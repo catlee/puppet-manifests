@@ -44,7 +44,10 @@ class selfserve-agent {
     python::virtualenv {
         $selfserve_dir:
             python => "/usr/bin/python2.6",
-            packages => ["buildbot==0.8.0"];
+            packages => [
+                "buildbot==0.8.4-pre-moz1",
+                "Twisted==10.1.0"
+                ];
     }
     exec {
         # Clone/install buildapi itself
