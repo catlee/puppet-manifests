@@ -65,6 +65,15 @@ class centos5 {
         }
         default: {
             file {
+                # This is a one-off deletion added while deploying bug 557260
+                # We had to delete a bunch of old scratchbox directories
+                # because they would break builds, and it was easier to move
+                # them to this directory and have Puppet clean them up than to
+                # wait for deletes to finish over ssh sessions.
+                "/builds/slave/DELETETHIS":
+                    ensure => absent,
+                    force => true;
+
                 "/home/cltbld/.android":
                     mode   => 775,
                     owner  => cltbld,
@@ -77,6 +86,10 @@ class centos5 {
                     mode    => 600,
                     owner   => cltbld,
                     group   => cltbld;
+
+                "/home/cltbld/.android/debug.keystore":
+                    ensure => absent,
+                    force => true;
 
                 "/home/cltbld/.mozpass.cfg":
                     source => "${local_fileroot}/home/cltbld/.mozpass.cfg",
@@ -256,10 +269,6 @@ class centos5 {
             enable => 'false',
             ensure => 'stopped'
         }
-        service { 'ntpd':
-            enable => 'false',
-            ensure => 'stopped'
-        }
         service { 'cups':
             enable => 'false',
             ensure => 'stopped'
@@ -321,5 +330,6 @@ class centos5 {
     include buildslave::startup
     include buildslave::cleanup
     include network
+    include boot
     include buildslave::purgebuilds
 }
