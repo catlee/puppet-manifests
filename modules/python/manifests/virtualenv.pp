@@ -64,7 +64,7 @@ class python::virtualenv::settings {
 # python: python executable on which to base the virtualenv
 # ensure: present or absent
 # packages: array of package names and versions to install
-define python::virtualenv($python, $ensure="present", $packages, $user="root", $group="root") {
+define python::virtualenv($python, $ensure="present", $packages, $user=null, $group=null) {
     include python::virtualenv::settings
 
     $virtualenv = $title
@@ -77,6 +77,38 @@ define python::virtualenv($python, $ensure="present", $packages, $user="root", $
     $virtualenv_dir_req = File["$virtualenv"]
     $pip_req = Python::Package_dir_file["pip-0.8.2.tar.gz"]
     $virtualenv_py_req = Python::Package_dir_file["virtualenv.py"]
+
+    # Figure out user/group if they haven't been set
+    case $user {
+        null: {
+            case $kernel {
+                Linux: {
+                    $ve_user = "root"
+                }
+                Darwin: {
+                    $ve_user = "root"
+                }
+        }
+
+        default: {
+            $ve_user = $user
+        }
+    }
+    case $group {
+        null: {
+            case $kernel {
+                Linux: {
+                    $ve_group = "root"
+                }
+                Darwin: {
+                    $ve_group = "admin"
+                }
+        }
+
+        default: {
+            $ve_group = $group
+        }
+    }
 
     # Set up the prerequisites for building a virtualenv, which differ
     # slightly per platform
@@ -110,8 +142,8 @@ define python::virtualenv($python, $ensure="present", $packages, $user="root", $
             file {
                 # create the virtualenv directory
                 "$virtualenv":
-                    owner => $user,
-                    group => $group,
+                    owner => $ve_user,
+                    group => $ve_group,
                     ensure => directory;
             }
 
@@ -119,7 +151,7 @@ define python::virtualenv($python, $ensure="present", $packages, $user="root", $
                 "virtualenv $virtualenv":
                     name => "$python ${python::virtualenv::settings::misc_python_dir}/virtualenv.py \
                             --python=$python --distribute $virtualenv",
-                    user => $user,
+                    user => $ve_user,
                     logoutput => on_failure,
                     require => $virtualenv_reqs,
                     creates => "$virtualenv/bin/pip";
@@ -133,7 +165,7 @@ define python::virtualenv($python, $ensure="present", $packages, $user="root", $
 #            python::package { $qualified_packages: }
             python::package {
                 $packages: 
-                    user => $user,
+                    user => $ve_user,
                     virtualenv => $virtualenv;
             }
         }
@@ -182,7 +214,7 @@ class python::misc_python_dir {
 #
 # Download a file from the package dir into the misc-python directory.  This should be
 # used sparingly - pip should download most mackages on its own.
-define python::package_dir_file($owner="root", $group="root") {
+define python::package_dir_file {
     include python::virtualenv::settings
     include python::misc_python_dir
 
@@ -192,8 +224,6 @@ define python::package_dir_file($owner="root", $group="root") {
         "${python::virtualenv::settings::misc_python_dir}/$filename": 
             source => "${python::virtualenv::settings::package_dir_source}/$filename",
             backup => false,
-            owner => $owner,
-            group => $group,
             require => [
                 File["${python::virtualenv::settings::misc_python_dir}"],
             ];
@@ -203,7 +233,7 @@ define python::package_dir_file($owner="root", $group="root") {
 # (private)
 #
 # Install the given Python package into the given virtualenv.
-define python::package($virtualenv, $user="root") { # TODO: extract $virtualenv from $title (see above)
+define python::package($virtualenv, $user) { # TODO: extract $virtualenv from $title (see above)
     include python::virtualenv::settings
     include python::misc_python_dir
     include python::pip_check_py
