@@ -156,3 +156,7 @@ node "dev-master01" inherits "masternode" {
     # Install all the prereqs of buildbot, but don't actually instantiate any masters
     include buildmaster
 }
+
+node "redis01" inherits "masternode" {
+    include redis
+}
