@@ -88,6 +88,7 @@ define python::virtualenv($python, $ensure="present", $packages, $user=null, $gr
                 Darwin: {
                     $ve_user = "root"
                 }
+            }
         }
 
         default: {
@@ -103,6 +104,7 @@ define python::virtualenv($python, $ensure="present", $packages, $user=null, $gr
                 Darwin: {
                     $ve_group = "admin"
                 }
+            }
         }
 
         default: {
