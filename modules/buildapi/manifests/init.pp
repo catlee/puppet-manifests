@@ -33,15 +33,18 @@ class buildapi {
                 "pylons",
                 "mysql-python",
             ],
+            user => "buildapi",
             python => "/usr/bin/python2.6";
     }
     exec {
         "clone-buildapi":
             require => Python::Virtualenv["/var/www/wsgi/buildapi"],
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi /var/www/wsgi/buildapi/src",
+            user => "buildapi",
             creates => "/var/www/wsgi/buildapi/src";
         "install-buildapi":
             require => Exec["clone-buildapi"],
+            user => "buildapi",
             command => "/var/www/wsgi/buildapi/bin/python setup.py install",
             creates => "/var/www/wsgi/buildapi/lib/python2.6/site-packages/buildapi",
             cwd => "/var/www/wsgi/buildapi/src";
