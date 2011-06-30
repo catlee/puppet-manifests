@@ -159,4 +159,5 @@ node "dev-master01" inherits "masternode" {
 
 node "redis01" inherits "masternode" {
     include redis
+    include ganglia::client
 }
