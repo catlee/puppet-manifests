@@ -23,7 +23,7 @@ DESC="buildapi"
 USER=buildapi
 
 DAEMON=/home/buildapi/bin/paster
-ARGS=serve /home/buildapi/production.ini
+ARGS="serve /home/buildapi/production.ini"
 
 PIDFILE=/home/buildapi/paster.pid
 
@@ -33,6 +33,7 @@ test -x ${DAEMON} || exit 0
 
 start_buildapi() {
     USER="$1"
+    cd ~${USER}
     ${PREFIXCMD} su -s /bin/bash -c "${DAEMON} ${ARGS} " - ${USER}
     ret=$?
     return $?
