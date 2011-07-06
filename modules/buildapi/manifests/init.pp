@@ -20,6 +20,7 @@ class buildapi {
             ensure => directory;
         "/etc/init.d/buildapi":
             require => Exec["clone-buildapi"],
+            mode => 755,
             source => "puppet:///modules/buildapi/buildapi.initd";
     }
     service {
@@ -36,8 +37,36 @@ class buildapi {
         "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
             packages => [
-                "pylons",
-                "mysql-python",
+                "Beaker==1.5.3",
+                "BeautifulSoup==3.0.8.1",
+                "FormEncode==1.2.2",
+                "Mako==0.3.3",
+                "MySQL-python==1.2.3c1",
+                "Paste==1.7.4",
+                "PasteDeploy==1.3.3",
+                "PasteScript==1.7.3",
+                "Pygments==1.3.1",
+                "Pylons==1.0",
+                "Routes==1.12.3",
+                "SQLAlchemy==0.6.8",
+                "Tempita==0.4",
+                "WebError==0.10.2",
+                "WebHelpers==1.0",
+                "WebOb==0.9.8",
+                "WebTest==1.2.1",
+                "amqplib==0.6.1",
+                "anyjson==0.3",
+                "carrot==0.10.7",
+                "decorator==3.2.0",
+                "gviz-api.py==1.7.0",
+                "httplib2==0.4.0",
+                "processing==0.52",
+                "pytz==2010o",
+                "redis==2.2.2",
+                "simplejson==2.0.9",
+                "virtualenv==1.4.9",
+                "wsgiref==0.1.2",
+                "zope.interface==3.5.1",
             ],
             user => "buildapi",
             python => "/usr/bin/python2.6";
