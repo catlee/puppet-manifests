@@ -1,6 +1,9 @@
 #! /bin/bash
 # initscript for buildapi
 
+####  This file under configuration management control
+####  DO NOT EDIT MANUALLY
+
 # chkconfig: 2345 50 08
 ### BEGIN INIT INFO
 # Provides:          buildapi
