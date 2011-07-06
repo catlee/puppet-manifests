@@ -163,6 +163,8 @@ node "redis01" inherits "masternode" {
 }
 
 node "buildapi01" inherits "masternode" {
+    # We shouldn't have to do this here
+    $num_masters = 0
     include buildapi
     include ganglia::client
 }
