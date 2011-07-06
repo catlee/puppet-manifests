@@ -59,6 +59,7 @@ class nagios::install {
 
     # install plugins
     case $slaveType {
+        require => Class["ganglia"]
         master: {
             nagios::install::plugin {
                 "check_http_redirect_ip": ;
