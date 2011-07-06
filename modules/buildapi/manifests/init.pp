@@ -1,12 +1,12 @@
 class buildapi {
+    include nginx
+    include nagios
     package {
         "python26":
             ensure => latest;
         "python26-devel":
             ensure => latest;
         "mysql-devel":
-            ensure => latest;
-        "nginx":
             ensure => latest;
         "mercurial":
             ensure => latest;
@@ -18,16 +18,22 @@ class buildapi {
             ensure => directory;
         "/var/www":
             ensure => directory;
-        "/var/www/wsgi":
-            ensure => directory;
+        "/etc/init.d/buildapi":
+            require => Exec["clone-buildapi"],
+            source => "puppet:///modules/buildapi/buildapi.initd";
+    }
+    service {
+        "buildapi":
+            require => File["/etc/init.d/buildapi"],
+            enable => true,
+            ensure => running;
     }
     user {
         "buildapi":
-            home => "/var/www/wsgi/buildapi",
             ensure => present;
     }
     python::virtualenv {
-        "/var/www/wsgi/buildapi":
+        "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
             packages => [
                 "pylons",
@@ -38,15 +44,15 @@ class buildapi {
     }
     exec {
         "clone-buildapi":
-            require => Python::Virtualenv["/var/www/wsgi/buildapi"],
-            command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi /var/www/wsgi/buildapi/src",
+            require => Python::Virtualenv["/home/buildapi"],
+            command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi /home/buildapi/src",
             user => "buildapi",
-            creates => "/var/www/wsgi/buildapi/src";
+            creates => "/home/buildapi/src";
         "install-buildapi":
             require => Exec["clone-buildapi"],
             user => "buildapi",
-            command => "/var/www/wsgi/buildapi/bin/python setup.py install",
-            creates => "/var/www/wsgi/buildapi/lib/python2.6/site-packages/buildapi",
-            cwd => "/var/www/wsgi/buildapi/src";
+            command => "/home/buildapi/bin/python setup.py develop",
+            creates => "/home/buildapi/lib/python2.6/site-packages/buildapi",
+            cwd => "/home/buildapi/src";
     }
 }
