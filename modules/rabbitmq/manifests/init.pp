@@ -1,6 +1,6 @@
 class rabbitmq {
     package {
-        "rabitmq-server":
+        "rabbitmq-server":
             ensure => latest;
     }
 }
