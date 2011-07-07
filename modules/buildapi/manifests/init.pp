@@ -69,6 +69,7 @@ class buildapi {
                 "pytz==2011h",
                 "simplejson==2.1.6",
                 "wsgiref==0.1.2",
+                "redis==2.4.5",
             ],
             user => "buildapi",
             python => "/usr/bin/python2.6";
