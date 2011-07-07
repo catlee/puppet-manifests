@@ -26,7 +26,7 @@ class buildapi {
         "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
             require => File["$nagios::service::etcdir/nrpe.d"],
             notify => Service["nrpe"],
-            contents => template("buildapi/buildapi-nagios.cfg.erb");
+            content => template("buildapi/buildapi-nagios.cfg.erb");
     }
     service {
         "buildapi":
