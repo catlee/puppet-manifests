@@ -1,5 +1,6 @@
 class buildapi {
     include nginx
+    include rabbitmq
     include nagios
     $nagios_etcdir = $nagios::service::etcdir
     $plugins_dir = $nagios::service::plugins_dir
