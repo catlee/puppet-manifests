@@ -22,6 +22,10 @@ class buildapi {
             require => Exec["clone-buildapi"],
             mode => 755,
             source => "puppet:///modules/buildapi/buildapi.initd";
+        "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
+            require => Class["nagios::service"],
+            notify => Service["nrpe"],
+            source => "puppet://modules/buildapi/buildapi-nagios.cfg";
     }
     service {
         "buildapi":
@@ -77,7 +81,7 @@ class buildapi {
             require => Exec["clone-buildapi"],
             user => "buildapi",
             command => "/home/buildapi/bin/python setup.py develop",
-            creates => "/home/buildapi/lib/python2.6/site-packages/buildapi",
+            creates => "/home/buildapi/lib/python2.6/site-packages/buildapi.egg-link",
             cwd => "/home/buildapi/src";
     }
 }
