@@ -1,6 +1,7 @@
 class buildapi {
     include nginx
     include nagios
+    $nagios_etcdir = $nagios::service::etcdir
     $plugins_dir = $nagios::service::plugins_dir
     package {
         "python26":
@@ -23,8 +24,8 @@ class buildapi {
             require => Exec["clone-buildapi"],
             mode => 755,
             source => "puppet:///modules/buildapi/buildapi.initd";
-        "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
-            require => File["$nagios::service::etcdir/nrpe.d"],
+        "$nagios_etcdir/nrpe.d/buildapi.cfg":
+            require => Class["nagios"],
             notify => Service["nrpe"],
             content => template("buildapi/buildapi-nagios.cfg.erb");
     }
