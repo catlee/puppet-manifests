@@ -25,7 +25,7 @@ class buildapi {
         "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
             require => File["$nagios::service::etcdir/nrpe.d"],
             notify => Service["nrpe"],
-            source => "puppet://modules/buildapi/buildapi-nagios.cfg";
+            source => "puppet:///modules/buildapi/buildapi-nagios.cfg";
     }
     service {
         "buildapi":
