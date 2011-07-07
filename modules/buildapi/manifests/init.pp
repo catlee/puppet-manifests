@@ -23,7 +23,7 @@ class buildapi {
             mode => 755,
             source => "puppet:///modules/buildapi/buildapi.initd";
         "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
-            require => Class["nagios::service"],
+            require => File["$nagios::service::etcdir/nrpe.d"],
             notify => Service["nrpe"],
             source => "puppet://modules/buildapi/buildapi-nagios.cfg";
     }
