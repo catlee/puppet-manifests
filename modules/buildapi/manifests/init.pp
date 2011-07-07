@@ -1,6 +1,7 @@
 class buildapi {
     include nginx
     include nagios
+    $plugins_dir = $nagios::service::plugins_dir
     package {
         "python26":
             ensure => latest;
@@ -25,7 +26,7 @@ class buildapi {
         "$nagios::service::etcdir/nrpe.d/buildapi.cfg":
             require => File["$nagios::service::etcdir/nrpe.d"],
             notify => Service["nrpe"],
-            source => "puppet:///modules/buildapi/buildapi-nagios.cfg";
+            contents => template("buildapi/buildapi-nagios.cfg.erb");
     }
     service {
         "buildapi":
