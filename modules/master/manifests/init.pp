@@ -9,6 +9,7 @@ class master {
     include ntp
     include prefs
     include ganglia::client
+    include root-user
     packages::hg {
         "latest":
     }
@@ -19,5 +20,9 @@ class master {
         # So that puppet help works
         "ruby-rdoc":
             ensure => "1.8.5-5.el5_4.8";
+        "screen":
+            ensure => latest;
+        "strace":
+            ensure => latest;
     }
 }

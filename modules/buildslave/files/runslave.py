@@ -6,6 +6,7 @@
 #   C:\runslave.py on Windows systems
 # - It lives in the 'buildslave' puppet module
 
+import time
 import sys
 import os
 import re
@@ -55,6 +56,18 @@ class BuildbotTac:
 
         raise NoBasedirError("Cannot determine basedir for slave %s" % self.options.slavename)
 
+    def ensure_basedir_exists(self):
+        '''
+        Ensures that the basedir exists
+        '''
+        basedir = self.get_basedir()
+        if not os.path.exists(basedir):
+            try:
+                os.makedirs(basedir)
+            except ValueError:
+                print "ERROR: We were not able to create the basedir: %s" % ValueError
+                sys.exit(1)
+
     # When the allocator is up, try to extract the basedir from the resulting
     # .tac file.  Note, however, that it's possible to get tac files which do
     # not contain a basedir, e.g., a disabled slave.  This just returns None
@@ -95,14 +108,14 @@ class BuildbotTac:
         if slave_matches('slave', 'xserve'):
             if slave_matches('linux', 'darwin', 'mac', 'xserve'):
                 basedir = dirs['posix_build']
-            elif slave_matches('win', 'w32', 'w764', 'w64'):
+            elif slave_matches('win', 'w32', 'w64'):
                 basedir = dirs['windows_build']
         elif slave_matches('talos', '-try', 'r3'):
             if slave_matches('linux', 'ubuntu', 'fed'):
                 basedir = dirs['linux_test']
             elif slave_matches('tiger', 'leopard', 'snow'):
                 basedir = dirs['mac_test']
-            elif slave_matches('xp', 'w7'):
+            elif slave_matches('xp', 'w7', 'w764'):
                 basedir = dirs['win_test']
 
         # failing that, find a directory that exists
@@ -143,6 +156,8 @@ class BuildbotTac:
                 print >>sys.stderr, "WARNING: downloaded page did not contain validity-check string"
                 return False
 
+            # ensure the basedir exists so we can write the temp file
+            self.ensure_basedir_exists()
             # tuck it away in buildbot.tac, safely
             filename = self.get_filename()
             if self.options.verbose:
@@ -182,13 +197,21 @@ class BuildbotTac:
         if not os.path.exists(self.get_filename()):
             raise NoBuildbotTacError("no buildbot.tac found; cannot start")
         self.delete_pidfile()
-        sys.exit(subprocess.call(
+        rv = subprocess.call(
             self.options.twistd_cmd + 
                     [ '--no_save',
                       '--logfile', os.path.join(self.get_basedir(), 'twistd.log'),
                       '--python', self.get_filename(),
                     ],
-            cwd=self.get_basedir()))
+            cwd=self.get_basedir())
+
+        # sleep for long enough to let twistd daemonize; otherwise, launchd may
+        # spot the partially-daemonized process and kill it as a "stray process
+        # with PGID equal to this dead job: <runslave.py's pid>" - see bug
+        # 644310
+        if rv == 0:
+            time.sleep(10)
+        sys.exit(rv)
 
 class NSCANotifier(object):
     """
@@ -319,9 +342,9 @@ class NSCANotifier(object):
         return toserver_pkt
 
     def do_send_notice(self):
-        host_name = self.nagios_name(options.slavename, verbose=options.verbose)
+        host_name = self.nagios_name(self.options.slavename, verbose=self.options.verbose)
         monitoring_host = self.monitoring_host_from_nagios_name(host_name,
-                                            verbose=options.verbose)
+                                            verbose=self.options.verbose)
 
         sk = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sk.connect((monitoring_host, self.monitoring_port))
@@ -355,6 +378,9 @@ def guess_twistd_cmd():
         for path in [
                 r'C:\mozilla-build\python25',
                 r'D:\mozilla-build\python25',
+                # newer mozilla-build installs in here
+                r'C:\mozilla-build\python',
+                r'D:\mozilla-build\python',
             ]:
             python_exe = os.path.join(path, 'python.exe')
             if os.path.exists(python_exe):
@@ -368,7 +394,7 @@ def guess_twistd_cmd():
         return [ '/tools/buildbot/bin/twistd' ]
 
 default_allocator_url = "http://slavealloc.build.mozilla.org/gettac/SLAVE"
-if __name__ == '__main__':
+def main():
     from optparse import OptionParser
 
     parser = OptionParser(usage=textwrap.dedent("""\
@@ -434,3 +460,6 @@ if __name__ == '__main__':
             tac.run()
     except RunslaveError, error:
         print >>sys.stderr, "FATAL: %s" % str(error)
+
+if __name__ == '__main__':
+    main()

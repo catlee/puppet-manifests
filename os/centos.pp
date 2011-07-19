@@ -87,6 +87,10 @@ class centos5 {
                     owner   => cltbld,
                     group   => cltbld;
 
+                "/home/cltbld/.android/debug.keystore":
+                    ensure => absent,
+                    force => true;
+
                 "/home/cltbld/.mozpass.cfg":
                     source => "${local_fileroot}/home/cltbld/.mozpass.cfg",
                     mode   => 600,
@@ -185,14 +189,14 @@ class centos5 {
         	    ensure   => installed,
         	    source   => "${platform_httproot}/RPMs/wireless-tools-devel-28-2.el5.i386.rpm";
             "fontconfig":
-                ensure   => latest,
+                ensure   => '2.4.2-2',
                 source   => "${platform_httproot}/RPMs/fontconfig-2.4.2-2.i686.rpm",
                 require  => Package["fontconfig-devel"];
             "fontconfig-devel":
-                ensure   => latest,
+                ensure   => '2.4.2-2',
                 source   => "${platform_httproot}/RPMs/fontconfig-devel-2.4.2-2.i686.rpm";
             "qt-sdk":
-                ensure   => latest,
+                ensure   => '4.6.3-2010.04moz1',
                 source   => "${platform_httproot}/RPMs/qt-sdk-4.6.3-2010.04moz1.i686.rpm",
                 require  => Package["fontconfig"];
             }
