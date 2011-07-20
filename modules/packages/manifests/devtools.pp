@@ -39,7 +39,7 @@ class packages::devtools {
                     version => "3.0-r135210.moz0",
                     creates => "/tools/clang-3.0/bin/clang";
                 "moz_binutils-2.21.1":
-                    version => "2.21.1-0moz1",
+                    version => "2.21.1-1",
                     creates => "/tools/binutils-2.21.1/bin/ld.gold";
             }
             case $hardwaremodel {
