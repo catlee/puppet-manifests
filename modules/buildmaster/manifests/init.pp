@@ -107,20 +107,22 @@ class buildmaster {
             user => "cltbld";
         "install-tools":
             require => Exec["clone-tools"],
-            creates => "$queue_venv/lib/python2.6/site-packages/tools.egg-link",
-            command => "$queue_venv/bin/python setup.py install",
+            creates => "$queue_venv/lib/python2.6/site-packages/buildtools.egg-link",
+            command => "$queue_venv/bin/python setup.py develop",
             cwd => "$queue_venv/tools",
             user => "cltbld";
     }
     file {
         "/etc/init.d/command_runner":
             content => template("buildmaster/command_runner.initd.erb"),
+            notify => service["command_runner"],
             mode => 755,
             owner => "root",
             group => "root";
         "${queue_venv}/run_command_runner.sh":
             require => Python::Virtualenv[$queue_venv],
             content => template("buildmaster/run_command_runner.sh.erb"),
+            notify => service["command_runner"],
             mode => 755,
             owner => "root",
             group => "root";
