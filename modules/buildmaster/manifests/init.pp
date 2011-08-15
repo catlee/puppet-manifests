@@ -108,9 +108,8 @@ class buildmaster {
         "install-tools":
             require => Exec["clone-tools"],
             creates => "$queue_venv/lib/python2.6/site-packages/tools.egg-link",
-            logoutput => on_failure,
             command => "$queue_venv/bin/python setup.py install",
-            cwd => $queue_venv,
+            cwd => "$queue_venv/tools",
             user => "cltbld";
     }
     file {
