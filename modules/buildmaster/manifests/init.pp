@@ -115,14 +115,14 @@ class buildmaster {
     file {
         "/etc/init.d/command_runner":
             content => template("buildmaster/command_runner.initd.erb"),
-            notify => service["command_runner"],
+            notify => Service["command_runner"],
             mode => 755,
             owner => "root",
             group => "root";
         "${queue_venv}/run_command_runner.sh":
             require => Python::Virtualenv[$queue_venv],
             content => template("buildmaster/run_command_runner.sh.erb"),
-            notify => service["command_runner"],
+            notify => Service["command_runner"],
             mode => 755,
             owner => "root",
             group => "root";
