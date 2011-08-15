@@ -16,8 +16,8 @@ class buildmaster {
     include buildmaster::settings
     $master_user = $buildmaster::settings::master_user
     $master_group = $buildmaster::settings::master_group
-    $master_user_uid = $buildmaster::settings::master_uid
-    $master_group_gid = $buildmaster::settings::master_gid
+    $master_user_uid = $buildmaster::settings::master_user_uid
+    $master_group_gid = $buildmaster::settings::master_group_gid
     $master_basedir = $buildmaster::settings::master_basedir
     package {
         "python26":
