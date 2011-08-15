@@ -1,7 +1,7 @@
 #!/bin/bash
 ####  This file under configuration management control
 ####  DO NOT EDIT MANUALLY
-cd <%=queue_venv%>
+cd <%=master_queue_venv%>
 (
 trap "rm -f pulse_publisher.pid" EXIT
 bin/python tools/buildbot-helpers/pulse_publisher.py -q /dev/shm/queue/pulse >> pulse_publisher.log 2>&1 &

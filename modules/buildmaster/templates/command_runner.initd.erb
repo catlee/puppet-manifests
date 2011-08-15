@@ -22,8 +22,8 @@ DESC="command runner"
 
 USER=cltbld
 
-DAEMON=<%=queue_venv%>/run_command_runner.sh
-PIDFILE=<%=queue_venv%>/command_runner.pid
+DAEMON=<%=master_queue_venv%>/run_command_runner.sh
+PIDFILE=<%=master_queue_venv%>/command_runner.pid
 
 test -x ${DAEMON} || exit 0
 

@@ -22,8 +22,8 @@ DESC="pulse publisher"
 
 USER=cltbld
 
-DAEMON=<%=queue_venv%>/run_pulse_publisher.sh
-PIDFILE=<%=queue_venv%>/pulse_publisher.pid
+DAEMON=<%=master_queue_venv%>/run_pulse_publisher.sh
+PIDFILE=<%=master_queue_venv%>/pulse_publisher.pid
 
 test -x ${DAEMON} || exit 0
 
