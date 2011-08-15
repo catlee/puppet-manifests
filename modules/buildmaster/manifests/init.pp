@@ -13,11 +13,12 @@ class buildmaster {
     include releng::master
     include secrets
     include buildmaster::queue
-    $master_user = "cltbld"
-    $master_group = "cltbld"
-    $master_user_uid = 500
-    $master_group_gid = 500
-    $master_basedir = "/builds/buildbot"
+    include buildmaster::settings
+    $master_user = $buildmaster::settings::master_user
+    $master_group = $buildmaster::settings::master_group
+    $master_user_uid = $buildmaster::settings::master_uid
+    $master_group_gid = $buildmaster::settings::master_gid
+    $master_basedir = $buildmaster::settings::master_basedir
     package {
         "python26":
             ensure => latest;

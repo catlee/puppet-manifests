@@ -2,13 +2,13 @@
 # sets up queue processors for pulse, commands, etc.
 
 class buildmaster::queue {
-    # For queue processors
-    $master_basedir = $buildmaster::master_basedir
-    $master_user = $buildmaster::master_user
-    $master_group = $buildmaster::master_group
-    $queue_venv = "${master_basedir}/queue"
+    include buildmaster::settings
+    $master_basedir = $buildmaster::settings::master_basedir
+    $master_user = $buildmaster::settings::master_user
+    $master_group = $buildmaster::settings::master_group
+    $master_queue_venv = $buildmaster::setings::master_queue_venv
     python::virtualenv {
-        $queue_venv:
+        $master_queue_venv:
             user => $master_user,
             group => $master_group,
             python => "/usr/bin/python2.6",
@@ -24,16 +24,16 @@ class buildmaster::queue {
         "clone-tools":
             require => [
                         Package["mercurial"],
-                        Python::Virtualenv[$queue_venv],
+                        Python::Virtualenv[$master_queue_venv],
                        ],
-            creates => "$queue_venv/tools",
-            command => "/usr/bin/hg clone http://hg.mozilla.org/build/tools $queue_venv/tools",
+            creates => "$master_queue_venv/tools",
+            command => "/usr/bin/hg clone http://hg.mozilla.org/build/tools $master_queue_venv/tools",
             user => $master_user;
         "install-tools":
             require => Exec["clone-tools"],
-            creates => "$queue_venv/lib/python2.6/site-packages/buildtools.egg-link",
-            command => "$queue_venv/bin/python setup.py develop",
-            cwd => "$queue_venv/tools",
+            creates => "$master_queue_venv/lib/python2.6/site-packages/buildtools.egg-link",
+            command => "$master_queue_venv/bin/python setup.py develop",
+            cwd => "$master_queue_venv/tools",
             user => $master_user;
     }
 
@@ -46,8 +46,8 @@ class buildmaster::queue {
             mode => 755,
             owner => "root",
             group => "root";
-        "${queue_venv}/run_command_runner.sh":
-            require => Python::Virtualenv[$queue_venv],
+        "${master_queue_venv}/run_command_runner.sh":
+            require => Python::Virtualenv[$master_queue_venv],
             content => template("buildmaster/run_command_runner.sh.erb"),
             notify => Service["command_runner"],
             mode => 755,
@@ -67,15 +67,15 @@ class buildmaster::queue {
             mode => 755,
             owner => "root",
             group => "root";
-        "${queue_venv}/run_pulse_publisher.sh":
-            require => Python::Virtualenv[$queue_venv],
+        "${master_queue_venv}/run_pulse_publisher.sh":
+            require => Python::Virtualenv[$master_queue_venv],
             content => template("buildmaster/run_pulse_publisher.sh.erb"),
             notify => Service["pulse_publisher"],
             mode => 755,
             owner => "root",
             group => "root";
-        "${queue_venv}/passwords.py":
-            require => Python::Virtualenv[$queue_venv],
+        "${master_queue_venv}/passwords.py":
+            require => Python::Virtualenv[$master_queue_venv],
             content => template("buildmaster/passwords.py.erb"),
             mode => 600,
             owner => $master_user,
@@ -92,18 +92,18 @@ class buildmaster::queue {
         "command_runner":
             hasstatus => true,
             require => [
-                Python::Virtualenv[$queue_venv],
+                Python::Virtualenv[$master_queue_venv],
                 File["/etc/init.d/command_runner"],
-                File["${queue_venv}/run_command_runner.sh"],
+                File["${master_queue_venv}/run_command_runner.sh"],
                 ],
             enable => true,
             ensure => running;
         "pulse_publisher":
             hasstatus => true,
             require => [
-                Python::Virtualenv[$queue_venv],
+                Python::Virtualenv[$master_queue_venv],
                 File["/etc/init.d/pulse_publisher"],
-                File["${queue_venv}/run_pulse_publisher.sh"],
+                File["${master_queue_venv}/run_pulse_publisher.sh"],
                 ],
             enable => true,
             ensure => running;
