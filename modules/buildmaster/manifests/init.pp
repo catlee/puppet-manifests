@@ -93,7 +93,12 @@ class buildmaster {
             user => "cltbld",
             group => "cltbld",
             python => "/usr/bin/python2.6",
-            packages => ["simplejson"];
+            packages => [
+                "simplejson",
+                "buildbot==0.8.4-pre-moz1",
+                "Twisted==10.1.0",
+                "zope.interface==3.6.1",
+            ],
     }
     exec {
         # Clone/install tools
@@ -112,6 +117,9 @@ class buildmaster {
             cwd => "$queue_venv/tools",
             user => "cltbld";
     }
+
+    $plugins_dir = $nagios::service::plugins_dir
+    $nagios_etcdir = $nagios::service::etcdir
     file {
         "/etc/init.d/command_runner":
             content => template("buildmaster/command_runner.initd.erb"),
@@ -126,7 +134,13 @@ class buildmaster {
             mode => 755,
             owner => "root",
             group => "root";
-
+        "$nagios_etcdir/nrpe.d/command_runner.cfg":
+            content => template("buildmaster/command_runner.cfg.erb"),
+            notify => Service["nrpe"],
+            require => Class["nagios"],
+            mode => 644,
+            owner => "root",
+            group => "root";
     }
     service {
         "command_runner":
@@ -139,5 +153,4 @@ class buildmaster {
             enable => true,
             ensure => running;
     }
-    # TODO: nagios checks
 }
