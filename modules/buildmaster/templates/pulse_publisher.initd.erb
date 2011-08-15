@@ -1,29 +1,29 @@
 #! /bin/bash
-# initscript for command_runner
+# initscript for pulse_publisher
 
 ####  This file under configuration management control
 ####  DO NOT EDIT MANUALLY
 
 # chkconfig: 2345 50 08
 ### BEGIN INIT INFO
-# Provides:          command_runner
+# Provides:          pulse_publisher
 # Required-Start:    $local_fs $network
 # Should-Start:      $remote_fs
 # Should-Stop:       $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      K 0 1 6
-# Short-Description: command runner
-# Description:       command runner
+# Short-Description: pulse publisher
+# Description:       pulse publisher
 ### END INIT INFO
 
 # Required-Stop:     $local_fs
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-DESC="command runner"
+DESC="pulse publisher"
 
 USER=cltbld
 
-DAEMON=<%=queue_venv%>/run_command_runner.sh
-PIDFILE=<%=queue_venv%>/command_runner.pid
+DAEMON=<%=queue_venv%>/run_pulse_publisher.sh
+PIDFILE=<%=queue_venv%>/pulse_publisher.pid
 
 test -x ${DAEMON} || exit 0
 
