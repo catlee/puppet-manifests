@@ -11,10 +11,6 @@ class centos5 {
         "/etc/inittab":
             source => "${platform_fileroot}/etc/inittab";
 
-        "/etc/sudoers":
-            mode => 440,
-            source => "${platform_fileroot}/etc/sudoers";
-
         "/etc/sysconfig/vncservers":
             source => "${platform_fileroot}/etc/sysconfig/vncservers";
 
@@ -105,9 +101,6 @@ class centos5 {
     #################################################
 
     file {
-        "/boot/grub.conf":
-            mode => 600,
-            source => "${platform_fileroot}/boot/grub.conf";
         "/etc/sysctl.conf":
             source => "${platform_fileroot}/etc/sysctl.conf";
     }
@@ -189,16 +182,20 @@ class centos5 {
         	    ensure   => installed,
         	    source   => "${platform_httproot}/RPMs/wireless-tools-devel-28-2.el5.i386.rpm";
             "fontconfig":
-                ensure   => latest,
+                ensure   => '2.4.2-2',
                 source   => "${platform_httproot}/RPMs/fontconfig-2.4.2-2.i686.rpm",
                 require  => Package["fontconfig-devel"];
             "fontconfig-devel":
-                ensure   => latest,
+                ensure   => '2.4.2-2',
                 source   => "${platform_httproot}/RPMs/fontconfig-devel-2.4.2-2.i686.rpm";
             "qt-sdk":
-                ensure   => latest,
-                source   => "${platform_httproot}/RPMs/qt-sdk-4.6.3-2010.04moz1.i686.rpm",
+                ensure   => '4.6.3-2010.04moz2',
+                source   => "${platform_httproot}/RPMs/qt-sdk-4.6.3-2010.04moz2.i686.rpm",
                 require  => Package["fontconfig"];
+            }
+            file {
+                "/tools/qt-4.6.3":
+                    ensure => "/builds/qt-4.6.3";
             }
         }
     }

@@ -5,22 +5,36 @@ class talos_fedora {
 
     package {
         "mercurial":
-            source => "${platform_httproot}/RPMs/mercurial-1.5.1-1.fc12.${hardwaremodel}.rpm";
+            source => "${platform_httproot}/RPMs/mercurial-1.5.1-1.fc12.${hardwaremodel}.rpm",
+            ensure => '1.5.1-1.fc12';
         "gtk2-immodule-xim":
             ensure => absent,
             before => Package["gtk2"];
         "gtk2":
             source => "${platform_httproot}/RPMs/gtk2-2.18.9-3.fc12.${hardwaremodel}.rpm",
-            ensure => latest;
+            ensure => '2.18.9-3.fc12';
     }
 
     # both fed and fed64 talos boxes were built without python-devel installed, so install it now
     package {
         "python-devel":
             source => "${platform_httproot}/RPMs/python-devel-2.6.2-2.fc12.${hardwaremodel}.rpm",
-            ensure => latest;
+            ensure => '2.6.2-2.fc12';
     }
     
+    # NetworkManager kinda sucks, so disable it
+    service {
+        "network":
+            ensure => 'running',
+            enable => true,
+            hasstatus => true,
+            require => Service['NetworkManager'];
+        "NetworkManager":
+            ensure => 'stopped',
+            hasstatus => true,
+            enable => false;
+    }
+
     file {
         "/home/cltbld/.fonts.conf":
             owner => cltbld,
@@ -40,10 +54,6 @@ class talos_fedora {
             group => "cltbld",
             mode => 644,
             source => "${platform_fileroot}${home}/cltbld/.ssh/authorized_keys";
-
-        "/etc/sudoers":
-            mode => 440,
-            source => "${platform_fileroot}/etc/sudoers";
 
         # this directory is referenced by the apache configs, and must exist
         "${home}/cltbld/talos-slave/talos-data":
@@ -66,4 +76,5 @@ class talos_fedora {
     include gui::resolution
     include network
     include boot
+    include sudoers
 }

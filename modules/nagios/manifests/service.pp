@@ -1,5 +1,8 @@
 # nagios class
 class nagios::service {
+    # nagios requires sudoers to run nrpe checks as root in some cases
+    include sudoers
+
     case $slaveType {
         master: {
             # This include only exists on Buildmaster Puppets, so we must
@@ -13,9 +16,14 @@ class nagios::service {
     case $operatingsystem {
         Darwin: {
             $plugins_dir = "/usr/local/nagios/plugins"
+            $etcdir = "/usr/local/nagios/etc"
             file {
                 "/usr/local/nagios/etc/nrpe.cfg":
                     content => template("nagios/nrpe.cfg.erb"),
+                    owner  => "root",
+                    group  => "wheel";
+                "$etcdir/nrpe.d":
+                    ensure => directory,
                     owner  => "root",
                     group  => "wheel";
             }
@@ -26,11 +34,16 @@ class nagios::service {
                 x86_64 => "lib64"
             }
             $plugins_dir = "/usr/${libdir}/nagios/plugins"
+            $etcdir = "/etc/nagios"
             file {
-                "/etc/nagios/nrpe.cfg":
+                "$etcdir/nrpe.cfg":
                     content => template("nagios/nrpe.cfg.erb"),
                     owner   => "root",
                     group   => "root";
+                "$etcdir/nrpe.d":
+                    ensure => directory,
+                    owner  => "root",
+                    group  => "wheel";
             }
         }
     }
@@ -39,7 +52,7 @@ class nagios::service {
             service {
                 "nrpe":
                     enable => "true",
-                    subscribe => File["/etc/nagios/nrpe.cfg"],
+                    subscribe => [File["$etcdir/nrpe.cfg"], File["$etcdir/nrpe.d"]],
                     ensure => "running",
                     require => $slaveType ? {
                         master => [

@@ -1,7 +1,7 @@
 # master class
 # for use as a base class for master-like machines
 # (e.g. buildbot masters, puppet masters)
-class master {
+class releng::master {
     $platform_httproot = "${httproot}/${lsbdistid}-${lsbdistrelease}-${hardwaremodel}/${slaveType}"
     include nagios
     include network
@@ -9,6 +9,8 @@ class master {
     include ntp
     include prefs
     include ganglia::client
+    include root-user
+    include sudoers
     packages::hg {
         "latest":
     }
@@ -18,6 +20,10 @@ class master {
             provider => "rpm";
         # So that puppet help works
         "ruby-rdoc":
-            ensure => "1.8.5-5.el5_4.8";
+            ensure => latest;
+        "screen":
+            ensure => latest;
+        "strace":
+            ensure => latest;
     }
 }

@@ -36,8 +36,11 @@ class packages::devtools {
             }
             install_rpm {
                 "clang":
-                    version => "3.0-r132336.moz0",
+                    version => "3.0-r135723.moz0",
                     creates => "/tools/clang-3.0/bin/clang";
+                "moz_binutils_2.21.1":
+                    version => "2.21.1-1",
+                    creates => "/tools/binutils-2.21.1/bin/ld.gold";
             }
             case $hardwaremodel {
         
@@ -91,7 +94,15 @@ class packages::devtools {
                 }
 
                 default: {
-
+                    package {
+                        "android-sdk12":
+                            provider  => rpm,
+                            ensure    => absent;
+                        "android-sdk13":
+                            provider  => rpm,
+                            ensure    => "r13-0moz1",
+                            source    => "${platform_httproot}/RPMs/android-sdk13-r13-0moz1.${hardwaremodel}.rpm";
+                    }
                     packages::install_rpm {
                         "gcc411":
                             creates     => "/tools/gcc-4.1.1/bin/gcc",
@@ -145,6 +156,9 @@ class packages::devtools {
                             creates     => "/tools/android-ndk-r4c/build/tools/make-release.sh",
                             version     => "r4c-0moz3",
                             subscribe   => File["/tools/android-ndk"];
+                        "android-ndk5":
+                            creates     => "/tools/android-ndk5/build/tools/make-release.sh",
+                            version     => "r5c-0moz3";
                         "mercurial-py26":
                             creates     => "/tools/python-2.6.5/lib/python2.6/site-packages/mercurial/windows.py",
                             version     => "1.5.1-0moz1",
@@ -248,10 +262,10 @@ class packages::devtools {
                     onlyif => "/bin/test -f /opt/local/bin/hg";
             }
             package {
-                "clang-3.0-r132336.moz0.dmg":
+                "clang-3.0-r135723.moz0.dmg":
                     provider    => pkgdmg,
                     ensure      => installed,
-                    source      => "${platform_httproot}/DMGs/clang-3.0-r132336.moz0.dmg";
+                    source      => "${platform_httproot}/DMGs/clang-3.0-r135723.moz0.dmg";
             }
             install_dmg {
                 "Twisted-8.0.1.dmg":
