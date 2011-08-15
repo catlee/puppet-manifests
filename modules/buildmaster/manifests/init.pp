@@ -92,7 +92,8 @@ class buildmaster {
         $queue_venv:
             user => "cltbld",
             group => "cltbld",
-            python => "/usr/bin/python2.6";
+            python => "/usr/bin/python2.6",
+            packages => ["simplejson"];
     }
     exec {
         # Clone/install tools
@@ -133,4 +134,5 @@ class buildmaster {
             enable => true,
             ensure => running;
     }
+    # TODO: nagios checks
 }
