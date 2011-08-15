@@ -85,4 +85,52 @@ class buildmaster {
             user => $master_user,
             cwd => $master_basedir;
     }
+
+    # For queue processors
+    $queue_venv = "${master_basedir}/queue"
+    python::virtualenv {
+        $queue_venv:
+            user => "cltbld",
+            group => "cltbld",
+            python => "/usr/bin/python2.6";
+    }
+    exec {
+        # Clone/install tools
+        "clone-tools":
+            require => [
+                        Package["mercurial"],
+                        Python::Virtualenv[$queue_venv],
+                       ],
+            creates => "$queue_venv/tools",
+            command => "/usr/bin/hg clone http://hg.mozilla.org/build/tools $queue_venv/tools",
+            user => "cltbld";
+        "install-tools":
+            require => Exec["clone-tools"],
+            creates => "$queue_venv/lib/python2.6/site-packages/tools.egg-link",
+            command => "bin/python setup.py install",
+            cwd => $queue_venv,
+            user => "cltbld";
+    }
+    file {
+        "/etc/init.d/command_runner":
+            source => template("buildmaster/command_runner.initd.erb"),
+            mode => 755,
+            owner => "root",
+            group => "root";
+        "${queue_venv}/run_command_runner.sh":
+            source => template("buildmaster/run_command_runner.sh.erb"),
+            mode => 755,
+            owner => "root",
+            group => "root";
+
+    }
+    service {
+        "command_runner":
+            require => [
+                File["/etc/init.d/command_runner"],
+                File["${queue_venv}/run_command_runner.sh"],
+                ],
+            enable => true,
+            ensure => running;
+    }
 }
