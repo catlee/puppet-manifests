@@ -105,3 +105,4 @@ class buildmaster::queue {
             enable => true,
             ensure => running;
     }
+}
