@@ -114,12 +114,12 @@ class buildmaster {
     }
     file {
         "/etc/init.d/command_runner":
-            source => template("buildmaster/command_runner.initd.erb"),
+            content => template("buildmaster/command_runner.initd.erb"),
             mode => 755,
             owner => "root",
             group => "root";
         "${queue_venv}/run_command_runner.sh":
-            source => template("buildmaster/run_command_runner.sh.erb"),
+            content => template("buildmaster/run_command_runner.sh.erb"),
             mode => 755,
             owner => "root",
             group => "root";
