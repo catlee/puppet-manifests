@@ -6,7 +6,7 @@ class buildmaster::queue {
     $master_basedir = $buildmaster::settings::master_basedir
     $master_user = $buildmaster::settings::master_user
     $master_group = $buildmaster::settings::master_group
-    $master_queue_venv = $buildmaster::setings::master_queue_venv
+    $master_queue_venv = $buildmaster::settings::master_queue_venv
     python::virtualenv {
         $master_queue_venv:
             user => $master_user,
