@@ -3,11 +3,14 @@
 
 class buildmaster::queue {
     # For queue processors
+    $master_basedir = $buildmaster::master_basedir
+    $master_user = $buildmaster::master_user
+    $master_group = $buildmaster::master_group
     $queue_venv = "${master_basedir}/queue"
     python::virtualenv {
         $queue_venv:
-            user => "cltbld",
-            group => "cltbld",
+            user => $master_user,
+            group => $master_group,
             python => "/usr/bin/python2.6",
             packages => [
                 "simplejson",
@@ -25,13 +28,13 @@ class buildmaster::queue {
                        ],
             creates => "$queue_venv/tools",
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/tools $queue_venv/tools",
-            user => "cltbld";
+            user => $master_user;
         "install-tools":
             require => Exec["clone-tools"],
             creates => "$queue_venv/lib/python2.6/site-packages/buildtools.egg-link",
             command => "$queue_venv/bin/python setup.py develop",
             cwd => "$queue_venv/tools",
-            user => "cltbld";
+            user => $master_user;
     }
 
     $plugins_dir = $nagios::service::plugins_dir
@@ -75,8 +78,8 @@ class buildmaster::queue {
             require => Python::Virtualenv[$queue_venv],
             content => template("buildmaster/passwords.py.erb"),
             mode => 600,
-            owner => "cltbld",
-            group => "cltbld";
+            owner => $master_user,
+            group => $master_group;
         "$nagios_etcdir/nrpe.d/pulse_publisher.cfg":
             content => template("buildmaster/pulse_publisher.cfg.erb"),
             notify => Service["nrpe"],
