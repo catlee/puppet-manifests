@@ -130,7 +130,7 @@ class buildmaster {
     }
     service {
         "command_runner":
-            hashstatus => true,
+            hasstatus => true,
             require => [
                 Python::Virtualenv[$queue_venv],
                 File["/etc/init.d/command_runner"],
