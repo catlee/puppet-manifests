@@ -58,6 +58,8 @@ class buildmaster {
             name => $master_group,
             gid => $master_group_gid;
     }
+    $plugins_dir = $nagios::service::plugins_dir
+    $nagios_etcdir = $nagios::service::etcdir
     file {
         "/builds":
             ensure => directory,
@@ -80,6 +82,11 @@ class buildmaster {
         "/root/.my.cnf":
             content => template("buildmaster/my.cnf.erb"),
             mode => 600,
+            owner => "root",
+            group => "root";
+        "${nagios_etcdir}/nrpe.d/buildbot.cfg":
+            content => template("buildmaster/buildbot.cfg.erb"),
+            mode => 644,
             owner => "root",
             group => "root";
     }
