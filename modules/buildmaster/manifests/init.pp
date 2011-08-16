@@ -99,5 +99,4 @@ class buildmaster {
             user => $master_user,
             cwd => $master_basedir;
     }
-
 }
