@@ -17,6 +17,11 @@ class buildmaster::queue {
                 "buildbot==0.8.4-pre-moz1",
                 "Twisted==10.1.0",
                 "zope.interface==3.6.1",
+                "http://hg.mozilla.org/users/clegnitto_mozilla.com/mozillapulse/archive/ad95569a089e.tar.bz2",
+                "carrot==0.10.7",
+                "amqplib==0.6.1",
+                "anyjson==0.3",
+                "pytz==2011d",
             ],
     }
     exec {
