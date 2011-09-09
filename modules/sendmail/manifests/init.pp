@@ -28,7 +28,7 @@ class sendmail {
             file {
                 "/etc/mail/sendmail.mc":
                     require => Package["sendmail-cf"],
-                    contents => template("sendmail/sendmail.mc.erb"),
+                    content => template("sendmail/sendmail.mc.erb"),
                     mode => 644,
                     owner => "root",
                     group => "root",
