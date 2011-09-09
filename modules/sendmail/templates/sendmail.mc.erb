@@ -157,7 +157,7 @@ dnl #
 dnl # The following example makes mail from this host and any additional
 dnl # specified domains appear to be sent from mydomain.com
 dnl #
-MASQUERADE_AS(`<%= score.lookup('sendmail::settings::masquerade') %>')dnl
+MASQUERADE_AS(`<%= scope.lookup('sendmail::settings::masquerade') %>')dnl
 dnl #
 dnl # masquerade not just the headers, but the envelope as well
 dnl #
