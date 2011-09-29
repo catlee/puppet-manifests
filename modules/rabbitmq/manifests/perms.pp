@@ -17,7 +17,7 @@ define rabbitmq::perms($conf, $write, $read, $vhost='/') {
                 Rabbitmq::Vhost[$vhost],
             ],
             command => "/usr/sbin/rabbitmqctl set_permissions -p '${vhost}' '${user}' '${conf}' '${write}' '${read}'",
-            unless => "/usr/sbin/rabbitmqctl list_user_permissions ${user} | grep -q -F '${vhost}	${conf}	${write}	${read}";
+            unless => "/usr/sbin/rabbitmqctl list_user_permissions ${user} | grep -q -F '${vhost}	${conf}	${write}	${read}'";
     }
 }
     
