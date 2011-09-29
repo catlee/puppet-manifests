@@ -9,7 +9,7 @@
 #       vhost => '/foo';
 # }
 define rabbitmq::perms($conf, $write, $read, $vhost='/') {
-    $user = $title;
+    $user = $title
     exec {
         "rabbit_perms_${user}_${vhost}":
             require => [
