@@ -40,6 +40,10 @@ class buildapi {
         "buildapi":
             ensure => present;
     }
+    rabbitmq::user {
+        "buildapi":
+            password => $secrets::buildapi_rmq_password;
+    }
     python::virtualenv {
         "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
