@@ -7,11 +7,10 @@
 # }
         
 define rabbitmq::user($password) {
-    require => Class["rabbitmq"]
-
     exec {
         "rabbit_user_${name}":
-            command => "/usr/sbin/rabbitmqctl add_user $name $password",
+            require => Class["rabbitmq"],
+            command => "/usr/sbin/rabbitmqctl add_user '$name' '$password'",
             unless => "/usr/sbin/rabbitmqctl list_users | grep -q '${name}'";
     }
 }
