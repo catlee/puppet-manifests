@@ -41,6 +41,7 @@ class buildapi {
                 File["/etc/init.d/buildapi"],
                 File["/home/buildapi/production.ini"],
             ],
+            hasstatus => true,
             enable => true,
             ensure => running;
     }
