@@ -13,7 +13,7 @@ define rabbitmq::user($ensure='present', $password='') {
                 "rabbit_user_${title}":
                     require => Service["rabbitmq-server"],
                     command => "/usr/sbin/rabbitmqctl delete_user '$title'",
-                    unless => "/usr/sbin/rabbitmqctl list_users | grep -v -q '^${title}'";
+                    onlyif => "/usr/sbin/rabbitmqctl list_users | grep -q '^${title}'";
             }
         }
         'present': {
