@@ -4,8 +4,9 @@
 # rabbitmq::user {
 #   'foo':
 #       password => 'secret';
+#   'bar':
+#       ensure => absent;
 # }
-        
 define rabbitmq::user($ensure='present', $password='') {
     case $ensure {
         'absent': {
