@@ -8,16 +8,19 @@
 #       read => '.*',
 #       vhost => '/foo';
 # }
-define rabbitmq::perms($conf, $write, $read, $vhost='/') {
-    $user = $title
+define rabbitmq::perms($conf, $write, $read, $vhost='/', $user='') {
+    case $user {
+        '': { $realuser = $title }
+        default: { $realuser = $user }
+    }
     exec {
-        "rabbit_perms_${user}:${vhost}":
+        "rabbit_perms_${realuser}:${vhost}":
             require => [
-                Rabbitmq::User[$user],
+                Rabbitmq::User[$realuser],
                 Rabbitmq::Vhost[$vhost],
             ],
-            command => "/usr/sbin/rabbitmqctl set_permissions -p '${vhost}' '${user}' '${conf}' '${write}' '${read}'",
-            unless => "/usr/sbin/rabbitmqctl list_user_permissions ${user} | grep -q -F '${vhost}	${conf}	${write}	${read}'";
+            command => "/usr/sbin/rabbitmqctl set_permissions -p '${vhost}' '${realuser}' '${conf}' '${write}' '${read}'",
+            unless => "/usr/sbin/rabbitmqctl list_user_permissions ${realuser} | grep -q -F '${vhost}	${conf}	${write}	${read}'";
     }
 }
     
