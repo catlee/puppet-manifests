@@ -6,7 +6,7 @@
 #       password => 'secret';
 # }
         
-define rabbitmq::user {
+define rabbitmq::user($ensure='present', $password='') {
     case $ensure {
         'absent': {
             exec {
@@ -16,7 +16,7 @@ define rabbitmq::user {
                     unless => "/usr/sbin/rabbitmqctl list_users | grep -v -q '^${name}'";
             }
         }
-        default: {
+        'present': {
             exec {
                 "rabbit_user_${name}":
                     require => Class["rabbitmq"],
@@ -26,6 +26,9 @@ define rabbitmq::user {
                     require => Exec["rabbit_user_${name}"],
                     command => "/usr/sbin/rabbitmqctl change_password '$name' '$password'";
             }
+        }
+        default: {
+            fail("Unsupported value for ensure: $ensure")
         }
     }
 }
