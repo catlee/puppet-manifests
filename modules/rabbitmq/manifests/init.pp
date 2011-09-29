@@ -11,8 +11,7 @@ class rabbitmq {
             ensure => running;
     }
     rabbitmq::user {
-        "guest": {
+        "guest":
             ensure => absent;
-        }
     }
 }
