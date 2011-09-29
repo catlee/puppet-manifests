@@ -11,7 +11,7 @@ define rabbitmq::user($ensure='present', $password='') {
         'absent': {
             exec {
                 "rabbit_user_${title}":
-                    require => Class["rabbitmq"],
+                    require => Service["rabbitmq-server"],
                     command => "/usr/sbin/rabbitmqctl delete_user '$title'",
                     unless => "/usr/sbin/rabbitmqctl list_users | grep -v -q '^${title}'";
             }
@@ -19,7 +19,7 @@ define rabbitmq::user($ensure='present', $password='') {
         'present': {
             exec {
                 "rabbit_user_${title}":
-                    require => Class["rabbitmq"],
+                    require => Service["rabbitmq-server"],
                     command => "/usr/sbin/rabbitmqctl add_user '$title' '$password'",
                     unless => "/usr/sbin/rabbitmqctl list_users | grep -q '^${title}'";
                 "rabbit_password_${title}":
