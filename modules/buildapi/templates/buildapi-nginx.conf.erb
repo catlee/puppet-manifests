@@ -1,6 +1,6 @@
 server {
-    listen80; ## ipv4
-    listen80[::]:80; ## ipv6
+    listen 80; ## ipv4
+    listen [::]:80; ## ipv6
 
     server_name <%= fqdn %>
     root /var/www/<%= title %>
