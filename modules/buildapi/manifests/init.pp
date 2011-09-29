@@ -2,6 +2,7 @@ class buildapi {
     include nginx
     include rabbitmq
     include nagios
+    include buildapi::settings
     $nagios_etcdir = $nagios::service::etcdir
     $plugins_dir = $nagios::service::plugins_dir
     package {
@@ -53,6 +54,10 @@ class buildapi {
             conf => '.*',
             write => '.*',
             read => '.*';
+    }
+    nginx::site {
+        "buildapi":
+            content => template('buildapi/buildapi-nginx.conf.erb');
     }
     python::virtualenv {
         "/home/buildapi":

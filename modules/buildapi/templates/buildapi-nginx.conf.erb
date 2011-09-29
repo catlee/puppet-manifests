@@ -1,0 +1,11 @@
+server {
+    listen80; ## ipv4
+    listen80[::]:80; ## ipv6
+
+    server_name <%= fqdn %>
+    root /var/www/<%= title %>
+
+    location / {
+        proxy_pass http://localhost:<%= scope::lookupvar('buildapi::settings::port') %>;
+    }
+}

@@ -1,3 +1,4 @@
+# This class gets a basic nginx installation up and running
 class nginx {
     package {
         "nginx":
