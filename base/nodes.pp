@@ -20,7 +20,12 @@ node "centos" inherits "build" {
     # tell, are caused by http://projects.puppetlabs.com/issues/2423.
     # This is supposedly fixed in puppet 0.25, so worth revisiting this once we
     # upgrade
-    include packages
+    include packages, root-user
+
+    perl::module::install {
+        "Config-General":
+            version => "2.30";
+    }
 }
 
 node "centos5-i686-build" inherits "centos" {
@@ -52,6 +57,7 @@ node "test" inherits "slave" {
 }
 
 node "fedora" inherits "test" {
+    include root-user
 }
 
 node "fedora12-i686-test" inherits "fedora" {
@@ -114,7 +120,7 @@ node "stage-and-aus2-server" {
     $platform_fileroot = $location::platform_fileroot
     $local_httproot = $location::local_httproot
     $local_fileroot = $location::local_fileroot
-    include stagelayout, stage-rpms, stageaus2
+    include stagelayout, stage-rpms, stageaus2, root-user
 }
 
 node "staging-node" {
