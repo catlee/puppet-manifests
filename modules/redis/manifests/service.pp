@@ -9,6 +9,7 @@ class redis::service {
             require => File["/etc/redis.conf"],
             subscribe => File["/etc/redis.conf"],
             enable => true,
+            hasstatus => true,
             ensure => running;
     }
 }
