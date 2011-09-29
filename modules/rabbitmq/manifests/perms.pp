@@ -1,4 +1,7 @@
 # rabbitmq::perms
+# 
+# manage rabbitmq user permissions
+# requires that the users and vhosts are declared elsewhere
 #
 # Usage:
 # rabbitmq::perms {
@@ -7,7 +10,16 @@
 #       write => '.*',
 #       read => '.*',
 #       vhost => '/foo';
+#   'user-bar':
+#       user => 'user',
+#       conf => '.*',
+#       write => '.*',
+#       read => '.*',
+#       vhost => '/bar';
 # }
+#
+# The $user parameter is optional, and defaults to the resource title. This
+# parameter indicates which rabbitmq user to manipulate
 define rabbitmq::perms($conf, $write, $read, $vhost='/', $user='') {
     case $user {
         '': { $realuser = $title }
@@ -23,4 +35,3 @@ define rabbitmq::perms($conf, $write, $read, $vhost='/', $user='') {
             unless => "/usr/sbin/rabbitmqctl list_user_permissions ${realuser} | grep -q -F '${vhost}	${conf}	${write}	${read}'";
     }
 }
-    

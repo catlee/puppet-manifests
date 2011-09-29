@@ -1,3 +1,10 @@
+# rabbitmq class
+#
+# This class provides a basic rabbitmq installation with no default users, and
+# one virtual host '/' set up.
+#
+# See also rabbitmq::user, rabbitmq::vhost, rabbitmq::perms resource
+# definitions
 class rabbitmq {
     package {
         "rabbitmq-server":
