@@ -14,7 +14,7 @@ define rabbitmq::vhost($ensure='present') {
                     unless => "/usr/sbin/rabbitmqctl list_vhosts | grep -q '^${title}'";
             }
         }
-        'abent': {
+        'absent': {
             exec {
                 "rabbit_vhost_${title}":
                     require => Service["rabbitmq-server"],
