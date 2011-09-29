@@ -10,21 +10,21 @@ define rabbitmq::user($ensure='present', $password='') {
     case $ensure {
         'absent': {
             exec {
-                "rabbit_user_${name}":
+                "rabbit_user_${title}":
                     require => Class["rabbitmq"],
-                    command => "/usr/sbin/rabbitmqctl delete_user '$name'",
-                    unless => "/usr/sbin/rabbitmqctl list_users | grep -v -q '^${name}'";
+                    command => "/usr/sbin/rabbitmqctl delete_user '$title'",
+                    unless => "/usr/sbin/rabbitmqctl list_users | grep -v -q '^${title}'";
             }
         }
         'present': {
             exec {
-                "rabbit_user_${name}":
+                "rabbit_user_${title}":
                     require => Class["rabbitmq"],
-                    command => "/usr/sbin/rabbitmqctl add_user '$name' '$password'",
-                    unless => "/usr/sbin/rabbitmqctl list_users | grep -q '^${name}'";
-                "rabbit_password_${name}":
-                    require => Exec["rabbit_user_${name}"],
-                    command => "/usr/sbin/rabbitmqctl change_password '$name' '$password'";
+                    command => "/usr/sbin/rabbitmqctl add_user '$title' '$password'",
+                    unless => "/usr/sbin/rabbitmqctl list_users | grep -q '^${title}'";
+                "rabbit_password_${title}":
+                    require => Exec["rabbit_user_${title}"],
+                    command => "/usr/sbin/rabbitmqctl change_password '$title' '$password'";
             }
         }
         default: {
