@@ -6,7 +6,7 @@ class rabbitmq {
     service {
         "rabbitmq-server":
             require => Package["rabbitmq-server"],
-            enabled => true,
+            enable => true,
             ensure => running;
     }
 }
