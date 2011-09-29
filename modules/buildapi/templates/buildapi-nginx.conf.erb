@@ -1,6 +1,6 @@
+server_names_hash_bucket_size 128;
 server {
     listen 80; ## ipv4
-    listen [::]:80; ## ipv6
 
     server_name <%= fqdn %>;
     root /var/www/<%= title %>;
