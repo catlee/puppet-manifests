@@ -23,7 +23,7 @@ define rabbitmq::vhost($ensure='present') {
             }
         }
         default: {
-            fail("Unsupported value for ensure: $ensure");
+            fail("Unsupported value for ensure: $ensure")
         }
     }
 }
