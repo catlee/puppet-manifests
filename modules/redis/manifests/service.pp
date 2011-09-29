@@ -1,8 +1,8 @@
 class redis::service {
     file {
-        "/etc/redis.conf":
+        "/etc/redis/default.conf":
             require => Class["redis::install"],
-            source => "puppet:///modules/redis/redis.conf";
+            source => "puppet:///modules/redis/default.conf";
     }
     service {
         "redis":
