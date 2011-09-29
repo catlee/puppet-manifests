@@ -3,6 +3,7 @@ class buildapi {
     include rabbitmq
     include nagios
     include buildapi::settings
+    include secrets
     $nagios_etcdir = $nagios::service::etcdir
     $plugins_dir = $nagios::service::plugins_dir
     package {
@@ -20,8 +21,6 @@ class buildapi {
     file {
         "/tools":
             ensure => directory;
-        "/var/www":
-            ensure => directory;
         "/etc/init.d/buildapi":
             require => Exec["clone-buildapi"],
             mode => 755,
@@ -30,10 +29,17 @@ class buildapi {
             require => Class["nagios"],
             notify => Service["nrpe"],
             content => template("buildapi/buildapi-nagios.cfg.erb");
+        "/home/buildapi/production.ini":
+            content => template('buildapi/production.ini.erb');
+            owner => 'buildapi',
+            group => 'buildapi',
     }
     service {
         "buildapi":
-            require => File["/etc/init.d/buildapi"],
+            require => [
+                File["/etc/init.d/buildapi"],
+                File["/home/buildapi/production.ini"],
+            ],
             enable => true,
             ensure => running;
     }
@@ -92,6 +98,7 @@ class buildapi {
                 "redis==2.4.5",
             ],
             user => "buildapi",
+            group => "buildapi",
             python => "/usr/bin/python2.6";
     }
     exec {
@@ -99,10 +106,12 @@ class buildapi {
             require => Python::Virtualenv["/home/buildapi"],
             command => "/usr/bin/hg clone http://hg.mozilla.org/build/buildapi /home/buildapi/src",
             user => "buildapi",
+            group => "buildapi",
             creates => "/home/buildapi/src";
         "install-buildapi":
             require => Exec["clone-buildapi"],
             user => "buildapi",
+            group => "buildapi",
             command => "/home/buildapi/bin/python setup.py develop",
             creates => "/home/buildapi/lib/python2.6/site-packages/buildapi.egg-link",
             cwd => "/home/buildapi/src";

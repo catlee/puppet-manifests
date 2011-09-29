@@ -2,6 +2,7 @@ define nginx::site($source='', $content='') {
     if ($source == '' and $content == '') {
         fail('Need to specify either source or content')
     }
+
     if ($source != '') {
         file {
             "/etc/nginx/conf.d/${title}.conf":
