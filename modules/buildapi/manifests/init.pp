@@ -31,6 +31,7 @@ class buildapi {
             content => template("buildapi/buildapi-nagios.cfg.erb");
         "/home/buildapi/production.ini":
             content => template('buildapi/production.ini.erb'),
+            notify => Service['buildapi'],
             owner => 'buildapi',
             group => 'buildapi';
     }
