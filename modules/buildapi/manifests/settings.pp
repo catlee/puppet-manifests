@@ -1,3 +1,3 @@
 class buildapi::settings {
-    $port = 5000;
+    $port = 5000
 }
