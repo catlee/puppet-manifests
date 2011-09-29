@@ -30,9 +30,9 @@ class buildapi {
             notify => Service["nrpe"],
             content => template("buildapi/buildapi-nagios.cfg.erb");
         "/home/buildapi/production.ini":
-            content => template('buildapi/production.ini.erb');
+            content => template('buildapi/production.ini.erb'),
             owner => 'buildapi',
-            group => 'buildapi',
+            group => 'buildapi';
     }
     service {
         "buildapi":
