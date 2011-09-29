@@ -14,4 +14,7 @@ class rabbitmq {
         "guest":
             ensure => absent;
     }
+    rabbitmq::vhost {
+        "/": ;
+    }
 }

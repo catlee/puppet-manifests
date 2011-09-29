@@ -4,11 +4,26 @@
 # rabbitmq::vhost {
 #   '/path': ;
 # }
-define rabbitmq::vhost {
-    exec {
-        "rabbit_vhost_${title}":
-            require => Service["rabbitmq-server"],
-            command => "/usr/sbin/rabbitmqctl add_vhost ${title}",
-            unless => "/usr/sbin/rabbitmqctl list_vhosts | grep -q '^${title}'";
+define rabbitmq::vhost($ensure='present') {
+    case $ensure {
+        'present': {
+            exec {
+                "rabbit_vhost_${title}":
+                    require => Service["rabbitmq-server"],
+                    command => "/usr/sbin/rabbitmqctl add_vhost ${title}",
+                    unless => "/usr/sbin/rabbitmqctl list_vhosts | grep -q '^${title}'";
+            }
+        }
+        'abent': {
+            exec {
+                "rabbit_vhost_${title}":
+                    require => Service["rabbitmq-server"],
+                    command => "/usr/sbin/rabbitmqctl delete_vhost ${title}",
+                    onlyif => "/usr/sbin/rabbitmqctl list_vhosts | grep -q '^${title}'";
+            }
+        }
+        default: {
+            fail("Unsupported value for ensure: $ensure");
+        }
     }
 }

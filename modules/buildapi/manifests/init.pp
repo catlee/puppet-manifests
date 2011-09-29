@@ -47,6 +47,13 @@ class buildapi {
     rabbitmq::vhost {
         "/buildapi": ;
     }
+    rabbitmq::perms {
+        "buildapi":
+            vhost => "/buildapi",
+            conf => '.*',
+            write => '.*',
+            read => '.*';
+    }
     python::virtualenv {
         "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
