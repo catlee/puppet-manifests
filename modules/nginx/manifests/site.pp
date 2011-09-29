@@ -4,7 +4,7 @@ define nginx::site($source='', $content='') {
     }
     if ($source != '') {
         file {
-            "/etc/nginx/conf.d/${title}":
+            "/etc/nginx/conf.d/${title}.conf":
                 source => $source,
                 owner => 'root',
                 group => 'root',
@@ -14,7 +14,7 @@ define nginx::site($source='', $content='') {
     }
     if ($content != '') {
         file {
-            "/etc/nginx/conf.d/${title}":
+            "/etc/nginx/conf.d/${title}.conf":
                 content => $content,
                 owner => 'root',
                 group => 'root',
