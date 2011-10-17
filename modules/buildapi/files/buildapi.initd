@@ -24,7 +24,7 @@ USER=buildapi
 
 DAEMON=/home/buildapi/bin/paster
 PIDFILE=/home/buildapi/buildapi.pid
-ARGS="serve /home/buildapi/production.ini --pid-file=${PIDFILE} --log-file=/home/buildapi/buildapi.log"
+ARGS="serve /home/buildapi/production.ini --pid-file=${PIDFILE} --log-file=/home/buildapi/buildapi.log --daemon"
 
 test -x ${DAEMON} || exit 0
 
