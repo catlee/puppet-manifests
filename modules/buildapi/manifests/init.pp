@@ -98,6 +98,7 @@ class buildapi {
                 "simplejson==2.1.6",
                 "wsgiref==0.1.2",
                 "redis==2.4.5",
+                "gviz_api.py==1.7.0",
             ],
             user => "buildapi",
             group => "buildapi",
