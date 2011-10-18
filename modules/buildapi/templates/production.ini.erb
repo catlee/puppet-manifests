@@ -62,7 +62,7 @@ branches = mozilla-central, mozilla-2.1, mozilla-2.0, mozilla-1.9.2, mozilla-1.9
 timezone = US/Pacific
 
 # How to connect to our memory cache
-buildapi.cache = redis:
+buildapi.cache = <%=scope.lookupvar('secrets::buildapi_cache_server')%>
 
 # Logging configuration
 [loggers]
