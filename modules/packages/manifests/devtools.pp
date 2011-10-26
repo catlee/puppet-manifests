@@ -33,14 +33,24 @@ class packages::devtools {
                     source => "${platform_httproot}/RPMs/mercurial-1.6.3-0moz1.${hardwaremodel}.rpm",
                     ensure => latest,
                     provider => rpm;
+                "gcc45test":
+                    ensure => absent;
             }
             install_rpm {
                 "clang":
-                    version => "3.0-r135723.moz0",
+                    version => "3.0-r142296.moz0",
                     creates => "/tools/clang-3.0/bin/clang";
                 "moz_binutils_2.21.1":
                     version => "2.21.1-1",
                     creates => "/tools/binutils-2.21.1/bin/ld.gold";
+                "gcc45":
+                    creates     => "/tools/gcc-4.5/bin/gcc",
+                    version     => "4.5.2-0moz1";
+
+                # For testing patches to the compiler
+                "gcc45_0moz2":
+                    creates     => "/tools/gcc-4.5-0moz2/bin/gcc",
+                    version     => "4.5.2-0moz2";
             }
             case $hardwaremodel {
         
@@ -49,9 +59,6 @@ class packages::devtools {
                         "gcc433":
                             creates     => "/tools/gcc-4.3.3/installed/bin/gcc",
                             version     => "4.3.3-0moz1";
-                        "gcc45":
-                            creates     => "/tools/gcc-4.5/bin/gcc",
-                            version     => "4.5.2-0moz1";
                         "python25":
                             creates     => "/tools/python-2.5.1/bin/python",
                             version     => "2.5.1-0moz1",
@@ -111,9 +118,6 @@ class packages::devtools {
                         "gcc433":
                             creates     => "/tools/gcc-4.3.3/installed/bin/gcc",
                             version     => "4.3.3-0moz1";
-                        "gcc45":
-                            creates     => "/tools/gcc-4.5/bin/gcc",
-                            version     => "4.5.2-0moz1";
                         "python25":
                             creates     => "/tools/python-2.5.1/bin/python",
                             version     => "2.5.1-0moz1",
@@ -262,10 +266,10 @@ class packages::devtools {
                     onlyif => "/bin/test -f /opt/local/bin/hg";
             }
             package {
-                "clang-3.0-r135723.moz0.dmg":
+                "clang-3.0-r142296.moz0.dmg":
                     provider    => pkgdmg,
                     ensure      => installed,
-                    source      => "${platform_httproot}/DMGs/clang-3.0-r135723.moz0.dmg";
+                    source      => "${platform_httproot}/DMGs/clang-3.0-r142296.moz0.dmg";
             }
             install_dmg {
                 "Twisted-8.0.1.dmg":

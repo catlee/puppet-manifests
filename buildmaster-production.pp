@@ -82,6 +82,11 @@ node "buildbot-master10" inherits "masternode" {
 
     # The selfserve agent runs here too
     include selfserve-agent
+
+    $addonProfile = "/builds/buildbot/tests_scheduler/bin/activate"
+    $addonSendchangePort = 9302
+    $addonSendchangeUser = "cltbld"
+    include addon-sendchanges
 }
 
 node "buildbot-master11" inherits "masternode" {
@@ -157,17 +162,26 @@ node "dev-master01" inherits "masternode" {
     include buildmaster
 
     # use LDAP and SSH keys for user-specific logins
-    include mozldap::logins
+    include userlogins
 }
 
 node "releng-mirror01" inherits "masternode" {
-    $num_masters = 0
     include releng::master
 
     # use LDAP and SSH keys for user-specific logins
-    include mozldap::logins
+    include userlogins
 
     mozilla-mirror {
         "mozilla-prereleases": ;
     }
+}
+
+node "redis01" inherits "masternode" {
+    include redis
+    include ganglia::client
+}
+
+node "buildapi01" inherits "masternode" {
+    include buildapi
+    include ganglia::client
 }
