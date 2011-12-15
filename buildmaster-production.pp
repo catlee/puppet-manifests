@@ -170,6 +170,26 @@ node "buildbot-master18" inherits "masternode" {
     }
 }
 
+node "buildbot-master19" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm19-tests1-tegra":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-tegra";
+    }
+}
+
+node "buildbot-master20" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm20-tests1-tegra":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-tegra";
+    }
+}
+
 node "dev-master01" inherits "masternode" {
     $num_masters = 0
     # This is a development machine
@@ -192,11 +212,25 @@ node "releng-mirror01" inherits "masternode" {
 }
 
 node "redis01" inherits "masternode" {
+    include releng::master
+    # use LDAP and SSH keys for user-specific logins
+    include userlogins
     include redis
-    include ganglia::client
 }
 
 node "buildapi01" inherits "masternode" {
+    include releng::master
+    # use LDAP and SSH keys for user-specific logins
+    include userlogins
     include buildapi
-    include ganglia::client
+}
+
+node "signing1" inherits "masternode" {
+    include releng::master
+    include signingserver
+}
+
+node "signing2" inherits "masternode" {
+    include releng::master
+    include signingserver
 }
