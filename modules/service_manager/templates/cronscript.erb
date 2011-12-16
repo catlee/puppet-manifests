@@ -1,0 +1,5 @@
+#!/bin/sh
+<%=updatecmd%> > /dev/null 2>&1
+if [ "$?" == 0 ]; then
+    service <%=service%> restart
+fi
