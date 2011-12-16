@@ -121,6 +121,7 @@ class buildapi {
     service_manager {
         "buildapi":
             require => Exec["clone-buildapi"],
+            user => "buildapi",
             service => "buildapi",
             updatecmd => "${service_manager::update_hg::cmd} /home/buildapi/src",
             minute => "*/5";

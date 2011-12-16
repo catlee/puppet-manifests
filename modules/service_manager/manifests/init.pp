@@ -11,7 +11,7 @@
 #           minute => # as per cron
 #           
             
-define service_manager($service, $updatecmd, $minute) {
+define service_manager($service, $updatecmd, $minute, $user) {
     file {
         "/usr/local/bin/${name}.cron":
             content => template("service_manager/cronscript.erb"),
@@ -22,8 +22,9 @@ define service_manager($service, $updatecmd, $minute) {
     cron {
         "$name-service_manager":
             require => File["/usr/local/bin/${name}.cron"],
-            command => $updatecmd,
-            minute => $minute,
+            command => "/usr/local/bin/${name}.cron",
+            user => 'root',
+            minute => $minute;
     }
 }
 
