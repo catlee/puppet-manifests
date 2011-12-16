@@ -38,8 +38,8 @@ class packages::devtools {
             }
             install_rpm {
                 "clang":
-                    version => "3.0-r135723.moz0",
-                    creates => "/tools/clang-3.0/bin/clang";
+                    version => "3.0-r145194.moz0",
+                    creates => "/tools/clang-3.0-r145194.moz0/bin/clang";
                 "moz_binutils_2.21.1":
                     version => "2.21.1-1",
                     creates => "/tools/binutils-2.21.1/bin/ld.gold";
@@ -47,10 +47,15 @@ class packages::devtools {
                     creates     => "/tools/gcc-4.5/bin/gcc",
                     version     => "4.5.2-0moz1";
 
-                # For testing patches to the compiler
                 "gcc45_0moz2":
                     creates     => "/tools/gcc-4.5-0moz2/bin/gcc",
                     version     => "4.5.2-0moz2";
+
+                # For testing patches to the compiler
+                "gcc45_0moz3":
+                    creates     => "/tools/gcc-4.5-0moz3/bin/gcc",
+                    version     => "4.5.2-0moz3";
+
             }
             case $hardwaremodel {
         
@@ -266,10 +271,10 @@ class packages::devtools {
                     onlyif => "/bin/test -f /opt/local/bin/hg";
             }
             package {
-                "clang-3.0-r135723.moz0.dmg":
+                "clang-3.0-r145194.moz0.dmg":
                     provider    => pkgdmg,
                     ensure      => installed,
-                    source      => "${platform_httproot}/DMGs/clang-3.0-r135723.moz0.dmg";
+                    source      => "${platform_httproot}/DMGs/clang-3.0-r145194.moz0.dmg";
             }
             install_dmg {
                 "Twisted-8.0.1.dmg":

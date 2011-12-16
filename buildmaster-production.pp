@@ -22,25 +22,26 @@ node "masternode" {
     # upgrade
     $slaveType = "master"
     include packages
+    include ntp
 }
 
 node "buildbot-master04" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm04-tests1":
+        "bm04-tests1-macosx":
             http_port => 8201,
             master_type => "tests",
-            basedir => "tests1";
+            basedir => "tests1-macosx";
     }
 }
 
 node "buildbot-master06" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm06-tests1":
+        "bm06-tests1-macosx":
             http_port => 8201,
             master_type => "tests",
-            basedir => "tests1";
+            basedir => "tests1-macosx";
     }
 }
 
@@ -92,10 +93,10 @@ node "buildbot-master10" inherits "masternode" {
 node "buildbot-master11" inherits "masternode" {
     $num_masters = 1
     buildmaster::buildbot_master {
-        "bm11-tests1":
+        "bm11-tests1-macosx":
             http_port => 8201,
             master_type => "tests",
-            basedir => "tests1";
+            basedir => "tests1-macosx";
     }
 }
 
@@ -150,9 +151,43 @@ node "buildbot-master16" inherits "masternode" {
 }
 
 node "buildbot-master17" inherits "masternode" {
-    $num_masters = 0
-    # Nothing allocated to this machine yet
-    include buildmaster
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm17-tests1-linux":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-linux";
+    }
+}
+
+node "buildbot-master18" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm18-tests1-linux":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-linux";
+    }
+}
+
+node "buildbot-master19" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm19-tests1-tegra":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-tegra";
+    }
+}
+
+node "buildbot-master20" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm20-tests1-tegra":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-tegra";
+    }
 }
 
 node "dev-master01" inherits "masternode" {
@@ -177,11 +212,25 @@ node "releng-mirror01" inherits "masternode" {
 }
 
 node "redis01" inherits "masternode" {
+    include releng::master
+    # use LDAP and SSH keys for user-specific logins
+    include userlogins
     include redis
-    include ganglia::client
 }
 
 node "buildapi01" inherits "masternode" {
+    include releng::master
+    # use LDAP and SSH keys for user-specific logins
+    include userlogins
     include buildapi
-    include ganglia::client
+}
+
+node "signing1" inherits "masternode" {
+    include releng::master
+    include signingserver
+}
+
+node "signing2" inherits "masternode" {
+    include releng::master
+    include signingserver
 }
