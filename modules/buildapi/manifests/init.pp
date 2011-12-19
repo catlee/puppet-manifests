@@ -36,9 +36,6 @@ class buildapi {
             content => template('buildapi/reporter.cfg.erb'),
             owner => 'buildapi',
             group => 'buildapi';
-            ensure => directory,
-            owner => "buildapi",
-            group => "buildapi";
         "/var/www/builds":
             ensure => directory,
             owner => "buildapi",
