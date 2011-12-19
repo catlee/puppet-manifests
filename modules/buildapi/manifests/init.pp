@@ -134,7 +134,7 @@ class buildapi {
         "4hour":
             require => [Exec["install-buildapi"], File["/home/buildapi/reporter.cfg"]],
             user => "buildapi",
-            command => "lockfile -60 -r 3 /home/buildapi/lockfile.4hr 2>/dev/null && (cd /home/buildapi/src; /home/buildapi/bin/python reporter.py -z -o /var/www/html/builds/builds-4hr.js.gz --starttime $(date -d 'now - 4 hours' +\%s) >> reporter.log 2>&1; rm -f /home/buildapi/lockfile.4hr)",
+            command => "lockfile -60 -r 3 /home/buildapi/lockfile.4hr 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/html/builds/builds-4hr.js.gz --starttime $(date -d 'now - 4 hours' +\%s) >> reporter.log 2>&1; rm -f /home/buildapi/lockfile.4hr)",
             minute => "*";
     }
 
