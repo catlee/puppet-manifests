@@ -1,5 +1,5 @@
 #!/bin/sh
 sudo -u <%=user%> <%=updatecmd%>
 if [ "$?" == 0 ]; then
-    service <%=service%> restart
+    /etc/init.d/<%=service%> restart
 fi

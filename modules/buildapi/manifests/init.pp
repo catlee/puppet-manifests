@@ -117,13 +117,13 @@ class buildapi {
             creates => "/home/buildapi/lib/python2.6/site-packages/buildapi.egg-link",
             cwd => "/home/buildapi/src";
     }
-    include service_manager::update_hg
+    include service_manager::hg
     service_manager {
         "buildapi":
             require => Exec["clone-buildapi"],
             user => "buildapi",
             service => "buildapi",
-            updatecmd => "${service_manager::update_hg::cmd} /home/buildapi/src",
+            updatecmd => "${service_manager::hg::cmd} /home/buildapi/src",
             minute => "*/5";
     }
 }
