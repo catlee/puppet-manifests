@@ -36,6 +36,13 @@ class buildapi {
             content => template('buildapi/reporter.cfg.erb'),
             owner => 'buildapi',
             group => 'buildapi';
+            ensure => directory,
+            owner => "buildapi",
+            group => "buildapi";
+        "/var/www/builds":
+            ensure => directory,
+            owner => "buildapi",
+            group => "buildapi";
     }
     service {
         "buildapi":
@@ -132,9 +139,9 @@ class buildapi {
     }
     cron {
         "4hour":
-            require => [Exec["install-buildapi"], File["/home/buildapi/reporter.cfg"]],
+            require => [Exec["install-buildapi"], File["/home/buildapi/reporter.cfg"], File["/var/www/builds"]],
             user => "buildapi",
-            command => "lockfile -60 -r 3 /home/buildapi/lockfile.4hr 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/html/builds/builds-4hr.js.gz --starttime $(date -d 'now - 4 hours' +\%s) >> reporter.log 2>&1; rm -f /home/buildapi/lockfile.4hr)",
+            command => "lockfile -60 -r 3 /home/buildapi/lockfile.4hr 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/builds/builds-4hr.js.gz --starttime $(date -d 'now - 4 hours' +\%s) >> reporter.log 2>&1; rm -f /home/buildapi/lockfile.4hr)",
             minute => "*";
     }
 
