@@ -3,6 +3,10 @@
 # can update code that a service is running with
 # and restart it if code has changed
 #
+# $updatecmd must update the working copy and return 0 if the service should be
+# restarted
+# /etc/init.d/$service must exist
+#
 # Usage:
 # service_manager {
 #      "buildapi":
@@ -12,17 +16,9 @@
 #           
             
 define service_manager($service, $updatecmd, $minute, $user) {
-    file {
-        "/usr/local/bin/${name}.cron":
-            content => template("service_manager/cronscript.erb"),
-            mode => 0755,
-            owner => 'root',
-            group => 'root';
-    }
     cron {
         "$name-service_manager":
-            require => File["/usr/local/bin/${name}.cron"],
-            command => "/usr/local/bin/${name}.cron",
+            command => "sudo -u ${user} ${updatecmd} && /etc/init.d/${service} restart",
             user => 'root',
             minute => $minute;
     }
