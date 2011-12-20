@@ -1,6 +1,5 @@
 class buildapi {
     include nginx
-    include rabbitmq
     include nagios
     include buildapi::settings
     include secrets
@@ -54,20 +53,6 @@ class buildapi {
     user {
         "buildapi":
             ensure => present;
-    }
-    rabbitmq::user {
-        "buildapi":
-            password => $secrets::buildapi_rmq_password;
-    }
-    rabbitmq::vhost {
-        "/buildapi": ;
-    }
-    rabbitmq::perms {
-        "buildapi":
-            vhost => "/buildapi",
-            conf => '.*',
-            write => '.*',
-            read => '.*';
     }
     nginx::site {
         "buildapi":
