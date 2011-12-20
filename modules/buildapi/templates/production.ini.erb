@@ -44,7 +44,7 @@ sqlalchemy.status_db.pool_recycle = 60
 set debug = false
 
 # Carrot exchange parameters
-carrot.hostname = localhost
+carrot.hostname = <%=scope.lookupvar('secrets::buildapi_rmq_host')%>
 carrot.exchange = buildapi.control
 carrot.consumer.queue = buildapi-web
 carrot.userid = buildapi
