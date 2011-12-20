@@ -3,7 +3,7 @@
 # can update code that a service is running with
 # and restart it if code has changed
 #
-# $updatecmd must update the working copy and return 0 if the service should be
+# $updatecmd must update the code and return 0 if the service should be
 # restarted
 # /etc/init.d/$service must exist
 #
@@ -12,9 +12,8 @@
 #      "buildapi":
 #           service => "buildapi",
 #           updatecmd => ...
-#           minute => # as per cron
-#           
-            
+#           minute => # as per cron;
+#
 define service_manager($service, $updatecmd, $minute, $user) {
     cron {
         "$name-service_manager":

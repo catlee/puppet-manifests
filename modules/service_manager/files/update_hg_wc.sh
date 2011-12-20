@@ -1,4 +1,6 @@
 #!/bin/sh
+####  This file under configuration management control
+####  DO NOT EDIT MANUALLY
 # usage:
 # update_hg_wc.sh <directory>
 # Does 'hg pull; hg update -C' inside directory
