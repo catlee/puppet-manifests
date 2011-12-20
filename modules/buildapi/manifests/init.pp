@@ -39,6 +39,10 @@ class buildapi {
             ensure => directory,
             owner => "buildapi",
             group => "buildapi";
+        "/var/www/buildapi/index.html":
+            source => "puppet:///modules/buildapi/buildapi-index.html",
+            owner => "buildapi",
+            group => "buildapi";
         "/var/www/buildapi/builddata":
             ensure => directory,
             owner => "buildapi",
