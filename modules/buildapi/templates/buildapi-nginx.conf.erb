@@ -8,6 +8,10 @@ server {
     server_name <%= scope::lookupvar('buildapi::settings::vhost') %>;
     root /var/www/<%= title %>;
 
+    location /builddata {
+        autoindex on;
+    }
+
     location /buildapi {
         proxy_pass http://localhost:<%= scope::lookupvar('buildapi::settings::port') %>;
     }
