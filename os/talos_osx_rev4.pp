@@ -68,7 +68,7 @@ class talos_osx_rev4 {
                     source => "${platform_fileroot}/Library/LaunchAgents/screenresolution.plist",
                     owner => "root",
                     group => "wheel",
-                    require => Package["screenresolution-1.4.dmg"];
+                    require => Package["screenresolution-1.5.dmg"];
                 "/etc/ScreenSharing.launchd":
                     ensure => "present";
            }
@@ -97,8 +97,8 @@ class talos_osx_rev4 {
                 # as well
                 "verify-resolution":
                     command => "/usr/local/bin/screenresolution set 1600x1200x32",
-                    onlyif => "/usr/local/bin/screenresolution get | /usr/bin/grep -v 'Display 0: 1600x1200x32'",
-                    require => Package["screenresolution-1.4.dmg"];
+                    unless => "/usr/local/bin/screenresolution get 2>&1 | /usr/bin/grep 'Display 0: 1600x1200x32'",
+                    require => Package["screenresolution-1.5.dmg"];
                 # Using -w will enable the service for future boots, this command does tick the box
                 # for remote-login in the Sharing prefpane (survives reboot)
                 "turn-on-ssh":
