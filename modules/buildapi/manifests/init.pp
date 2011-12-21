@@ -47,6 +47,11 @@ class buildapi {
             ensure => directory,
             owner => "buildapi",
             group => "buildapi";
+        "/home/buildapi/waittime_mailer.sh":
+            content => template("buildapi/waittime_mailer.sh.erb"),
+            owner => "buildapi",
+            group => "buildapi",
+            mode => 0755;
     }
     service {
         "buildapi":
@@ -66,6 +71,8 @@ class buildapi {
         "buildapi":
             content => template('buildapi/buildapi-nginx.conf.erb');
     }
+    $buildapi_python = "/home/buildapi/bin/python"
+    $buildapi_dir = "/home/buildapi/src"
     python::virtualenv {
         "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
@@ -147,5 +154,14 @@ class buildapi {
             command => "lockfile -60 -r 3 /home/buildapi/lockfile.daily 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/buildapi/buildjson/builds-$(date -d yesterday +\%Y-\%m-\%d).js.gz --startdate $(date -d yesterday +\%Y-\%m-\%d) >> reporter-daily.log 2>&1; rm -f /home/buildapi/lockfile.daily)",
             hour => "0",
             minute => "0";
+        "waittime-build":
+            require => [
+                Service["buildapi"],
+                File["/home/buildapi/waittime_mailer.sh"],
+                ],
+            user => "buildapi",
+            command => "/home/buildapi/waittime_mailer.shh buildpool -a catlee@mozilla.com",
+            hour => "6",
+            minute => "1";
     }
 }
