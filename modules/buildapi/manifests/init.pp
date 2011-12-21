@@ -49,8 +49,23 @@ class buildapi {
             ensure => directory,
             owner => "buildapi",
             group => "buildapi";
-        "/home/buildapi/waittime_mailer.sh":
-            content => template("buildapi/waittime_mailer.sh.erb"),
+        "/home/buildapi/bin":
+            ensure => directory,
+            owner => "buildapi",
+            group => "buildapi",
+            mode => 0755;
+        "/home/buildapi/bin/waittime_mailer.sh":
+            content => template("buildapi/bin/waittime_mailer.sh.erb"),
+            owner => "buildapi",
+            group => "buildapi",
+            mode => 0755;
+        "/home/buildapi/bin/report-4hr.sh"
+            content => template("buildapi/bin/report-4hr.sh.erb"),
+            owner => "buildapi",
+            group => "buildapi",
+            mode => 0755;
+        "/home/buildapi/bin/report-daily.sh"
+            content => template("buildapi/bin/report-daily.sh.erb"),
             owner => "buildapi",
             group => "buildapi",
             mode => 0755;
@@ -140,45 +155,47 @@ class buildapi {
                 Exec["install-buildapi"],
                 File["/home/buildapi/reporter.cfg"],
                 File["/var/www/buildapi/buildjson"],
+                File["/home/buildapi/bin/report-4hr.sh"],
                 ],
             user => "buildapi",
-            command => "lockfile -60 -r 3 /home/buildapi/lockfile.4hr 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/buildapi/buildjson/builds-4hr.js.gz --starttime $(date -d 'now - 4 hours' +\%s) >> reporter-4hr.log 2>&1; rm -f /home/buildapi/lockfile.4hr)",
+            command => "/home/buildapi/bin/report-4hr.sh",
             minute => "*";
         "dailyreport":
             require => [
                 Exec["install-buildapi"],
                 File["/home/buildapi/reporter.cfg"],
                 File["/var/www/buildapi/buildjson"],
+                File["/home/buildapi/bin/report-daily.sh"],
                 ],
             user => "buildapi",
-            command => "lockfile -60 -r 3 /home/buildapi/lockfile.daily 2>/dev/null && (cd /home/buildapi; /home/buildapi/bin/python src/buildapi/scripts/reporter.py -z -o /var/www/buildapi/buildjson/builds-$(date -d yesterday +\%Y-\%m-\%d).js.gz --startdate $(date -d yesterday +\%Y-\%m-\%d) >> reporter-daily.log 2>&1; rm -f /home/buildapi/lockfile.daily)",
+            command => "/home/buildapi/bin/report-daily.sh",
             hour => "0",
             minute => "0";
         "waittime-build":
             require => [
                 Service["buildapi"],
-                File["/home/buildapi/waittime_mailer.sh"],
+                File["/home/buildapi/bin/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh buildpool -a dev-tree-management@lists.mozilla.org",
+            command => "/home/buildapi/bin/waittime_mailer.sh buildpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "1";
         "waittime-try":
             require => [
                 Service["buildapi"],
-                File["/home/buildapi/waittime_mailer.sh"],
+                File["/home/buildapi/bin/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh trybuildpool -a dev-tree-management@lists.mozilla.org",
+            command => "/home/buildapi/bin/waittime_mailer.sh trybuildpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "3";
         "waittime-test":
             require => [
                 Service["buildapi"],
-                File["/home/buildapi/waittime_mailer.sh"],
+                File["/home/buildapi/bin/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh testpool -a dev-tree-management@lists.mozilla.org",
+            command => "/home/buildapi/bin/waittime_mailer.sh testpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "5";
     }
