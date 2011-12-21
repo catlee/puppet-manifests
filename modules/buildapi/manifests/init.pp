@@ -5,6 +5,8 @@ class buildapi {
     include secrets
     $nagios_etcdir = $nagios::service::etcdir
     $plugins_dir = $nagios::service::plugins_dir
+    $buildapi_python = "/home/buildapi/bin/python"
+    $buildapi_dir = "/home/buildapi/src"
     package {
         "python26":
             ensure => latest;
@@ -71,8 +73,6 @@ class buildapi {
         "buildapi":
             content => template('buildapi/buildapi-nginx.conf.erb');
     }
-    $buildapi_python = "/home/buildapi/bin/python"
-    $buildapi_dir = "/home/buildapi/src"
     python::virtualenv {
         "/home/buildapi":
             require => [Package["python26"], Package["python26-devel"], Package["mysql-devel"]],
@@ -160,8 +160,26 @@ class buildapi {
                 File["/home/buildapi/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.shh buildpool -a catlee@mozilla.com",
+            command => "/home/buildapi/waittime_mailer.sh buildpool -a catlee@mozilla.com",
             hour => "6",
             minute => "1";
+        "waittime-try":
+            require => [
+                Service["buildapi"],
+                File["/home/buildapi/waittime_mailer.sh"],
+                ],
+            user => "buildapi",
+            command => "/home/buildapi/waittime_mailer.sh trybuildpool -a catlee@mozilla.com",
+            hour => "6",
+            minute => "3";
+        "waittime-test":
+            require => [
+                Service["buildapi"],
+                File["/home/buildapi/waittime_mailer.sh"],
+                ],
+            user => "buildapi",
+            command => "/home/buildapi/waittime_mailer.sh testbuildpool -a catlee@mozilla.com",
+            hour => "6",
+            minute => "5";
     }
 }
