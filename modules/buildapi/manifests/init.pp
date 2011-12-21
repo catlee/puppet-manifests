@@ -178,7 +178,7 @@ class buildapi {
                 File["/home/buildapi/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh testbuildpool -a catlee@mozilla.com",
+            command => "/home/buildapi/waittime_mailer.sh testpool -a catlee@mozilla.com",
             hour => "6",
             minute => "5";
     }
