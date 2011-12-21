@@ -55,17 +55,17 @@ class buildapi {
             group => "buildapi",
             mode => 0755;
         "/home/buildapi/bin/waittime_mailer.sh":
-            content => template("buildapi/bin/waittime_mailer.sh.erb"),
+            content => template("buildapi/waittime_mailer.sh.erb"),
             owner => "buildapi",
             group => "buildapi",
             mode => 0755;
-        "/home/buildapi/bin/report-4hr.sh"
-            content => template("buildapi/bin/report-4hr.sh.erb"),
+        "/home/buildapi/bin/report-4hr.sh":
+            content => template("buildapi/report-4hr.sh.erb"),
             owner => "buildapi",
             group => "buildapi",
             mode => 0755;
-        "/home/buildapi/bin/report-daily.sh"
-            content => template("buildapi/bin/report-daily.sh.erb"),
+        "/home/buildapi/bin/report-daily.sh":
+            content => template("buildapi/report-daily.sh.erb"),
             owner => "buildapi",
             group => "buildapi",
             mode => 0755;
