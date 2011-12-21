@@ -160,7 +160,7 @@ class buildapi {
                 File["/home/buildapi/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh buildpool -a catlee@mozilla.com",
+            command => "/home/buildapi/waittime_mailer.sh buildpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "1";
         "waittime-try":
@@ -169,7 +169,7 @@ class buildapi {
                 File["/home/buildapi/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh trybuildpool -a catlee@mozilla.com",
+            command => "/home/buildapi/waittime_mailer.sh trybuildpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "3";
         "waittime-test":
@@ -178,7 +178,7 @@ class buildapi {
                 File["/home/buildapi/waittime_mailer.sh"],
                 ],
             user => "buildapi",
-            command => "/home/buildapi/waittime_mailer.sh testpool -a catlee@mozilla.com",
+            command => "/home/buildapi/waittime_mailer.sh testpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "5";
     }
