@@ -211,6 +211,6 @@ class buildapi {
                 ],
             user => "buildapi",
             command => "/home/buildapi/bin/report-running.sh",
-            minute => "*/2";
+            minute => "*";
     }
 }
