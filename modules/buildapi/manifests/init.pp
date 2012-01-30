@@ -90,9 +90,9 @@ class buildapi {
             ensure => present;
     }
     mailalias {
-        "buildapi"
+        "buildapi":
             recipient => "catlee@mozilla.com";
-        "root"
+        "root":
             recipient => "catlee@mozilla.com";
     }
     nginx::site {
