@@ -12,10 +12,6 @@ server {
         autoindex on;
     }
 
-    location /buildhtml {
-        autoindex on;
-    }
-
     location /buildapi {
         proxy_pass http://localhost:<%= scope::lookupvar('buildapi::settings::port') %>;
     }
