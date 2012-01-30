@@ -69,6 +69,11 @@ class buildapi {
             owner => "buildapi",
             group => "buildapi",
             mode => 0755;
+        "/home/buildapi/bin/report-running.sh":
+            content => template("buildapi/report-running.sh.erb"),
+            owner => "buildapi",
+            group => "buildapi",
+            mode => 0755;
     }
     service {
         "buildapi":
@@ -198,5 +203,13 @@ class buildapi {
             command => "/home/buildapi/bin/waittime_mailer.sh testpool -a dev-tree-management@lists.mozilla.org",
             hour => "6",
             minute => "5";
+        "running":
+            require => [
+                Service["buildapi"],
+                File["/home/buildapi/bin/report-running.sh"],
+                ],
+            user => "buildapi",
+            command => "/home/buildapi/bin/report-running.sh",
+            minute => "*/2";
     }
 }
