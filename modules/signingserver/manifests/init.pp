@@ -22,6 +22,12 @@ class signingserver {
                     ensure => latest;
                 "libevent-devel":
                     ensure => latest;
+                "jdk1.6":
+                    provider => rpm,
+                    source => "${platform_httproot}/RPMs/jdk1.6-1.6.0_17-0moz1.i686.rpm";
+                "android-sdk":
+                    provider => rpm,
+                    source => "${platform_httproot}/RPMs/android-sdk-r8-0moz3.i686.rpm";
             }
         }
         default: {
@@ -37,7 +43,7 @@ class signingserver {
             managehome => true;
     }
 
-    $signing_server_ports = ["9000", "9010"]
+    $signing_server_ports = ["9000", "9010", "9020"]
     file {
         "/home/cltsign/instances":
             ensure => directory,
@@ -45,6 +51,15 @@ class signingserver {
             require => User["cltsign"];
         "/etc/sysconfig/iptables":
             content => template("signingserver/iptables.erb");
+        "/home/cltsign/.ssh":
+            mode => 755,
+            owner => "cltsign",
+            group => "cltsign",
+            ensure => directory;
+        "/home/cltsign/.ssh/known_hosts":
+            owner => "cltsign",
+            group => "cltsign",
+            source => "${local_fileroot}/home/cltsign/.ssh/known_hosts";
     }
 
     service {
@@ -66,8 +81,7 @@ class signingserver {
             user           => "cltsign",
             token_secret   => $secrets::signingserver::token_secret,
             new_token_auth => $secrets::signingserver::new_token_auth,
-            # XXX: get a real key for nightly
-            mar_key_name   => "dep1",
+            mar_key_name   => "nightly1",
             require        => File["/home/cltsign/instances"];
     }
 
@@ -80,6 +94,17 @@ class signingserver {
             token_secret   => $secrets::signingserver::token_secret,
             new_token_auth => $secrets::signingserver::new_token_auth,
             mar_key_name   => "dep1",
+            require        => File["/home/cltsign/instances"];
+    }
+    signingserver::instance {
+        "/home/cltsign/instances/rel-key-signing-server":
+            listenaddr     => "0.0.0.0",
+            port           => "9020",
+            code_tag       => "SIGNING_SERVER",
+            user           => "cltsign",
+            token_secret   => $secrets::signingserver::token_secret,
+            new_token_auth => $secrets::signingserver::new_token_auth,
+            mar_key_name   => "rel1",
             require        => File["/home/cltsign/instances"];
     }
 }

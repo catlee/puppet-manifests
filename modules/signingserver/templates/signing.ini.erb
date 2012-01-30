@@ -2,19 +2,19 @@
 listen = <%=listenaddr%>
 port = <%=port%>
 redis = redis01.build.scl1.mozilla.com
-max_file_age = 86400 ; 1 Day
+max_file_age = 43200 ; 12 hours
 cleanup_interval = 600 ; 10 Minutes
 
 [security]
 private_ssl_cert = <%=full_private_ssl_cert%>
 public_ssl_cert = <%=full_public_ssl_cert%>
 allowed_ips = <%=allowed_ips%>
-allowed_filenames = .*\.exe,.*\.mar,.*\.dll,.*\.bz2,.*\.zip,.*\.dmg,.*\.checksums
+allowed_filenames = .*\.exe,.*\.mar,.*\.dll,.*\.bz2,.*\.zip,.*\.dmg,.*\.checksums,.*\.bundle,.*SUMS
 min_filesize = 10
 token_secret = <%=token_secret%>
 new_token_auth = <%=new_token_auth%>
 new_token_allowed_ips = <%=new_token_allowed_ips%>
-max_token_age = 7201 ; 2 Hours
+max_token_age = 14401 ; 4 Hours
 
 [paths]
 signed_dir = <%=signed_dir%>
