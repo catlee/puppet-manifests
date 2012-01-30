@@ -49,10 +49,6 @@ class buildapi {
             ensure => directory,
             owner => "buildapi",
             group => "buildapi";
-        "/var/www/buildapi/buildhtml":
-            ensure => directory,
-            owner => "buildapi",
-            group => "buildapi";
         "/home/buildapi/bin":
             ensure => directory,
             owner => "buildapi",
@@ -211,7 +207,7 @@ class buildapi {
             require => [
                 Service["buildapi"],
                 File["/home/buildapi/bin/report-running.sh"],
-                File["/var/www/buildapi/buildhtml"],
+                File["/var/www/buildapi/buildjson"],
                 ],
             user => "buildapi",
             command => "/home/buildapi/bin/report-running.sh",
