@@ -89,6 +89,12 @@ class buildapi {
         "buildapi":
             ensure => present;
     }
+    mailalias {
+        "buildapi"
+            recipient => "catlee@mozilla.com";
+        "root"
+            recipient => "catlee@mozilla.com";
+    }
     nginx::site {
         "buildapi":
             content => template('buildapi/buildapi-nginx.conf.erb');
