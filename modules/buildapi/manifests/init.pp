@@ -92,10 +92,10 @@ class buildapi {
     mailalias {
         "buildapi":
             notify => Exec["newaliases"],
-            recipient => "catlee@mozilla.com";
+            recipient => "release@mozilla.com";
         "root":
             notify => Exec["newaliases"],
-            recipient => "catlee@mozilla.com";
+            recipient => "release@mozilla.com";
     }
     nginx::site {
         "buildapi":
