@@ -6,7 +6,7 @@
   "statusdb.master_name": "<%=master_name%>", 
   "statusdb.master_url": "http://<%=fqdn%>:<%=http_port%>", 
 
-  "schedulerdb.url": "mysql://<%=scope.lookupvar('secrets::buildbot_schedulerdb_user')%>:<%=scope.lookupvar('secrets::buildbot_schedulerdb_password')%>@<%=scope.lookupvar('secrets::buildbot_schedulerdb_host')%>/<%=scope.lookupvar('secrets::buildbot_schedulerdb_database')%>"
+  "schedulerdb.url": "mysql://<%=scope.lookupvar('secrets::buildbot_schedulerdb_user')%>:<%=scope.lookupvar('secrets::buildbot_schedulerdb_password')%>@<%=scope.lookupvar('secrets::buildbot_schedulerdb_host')%>/<%=scope.lookupvar('secrets::buildbot_schedulerdb_database')%>",
 
   "mail_notifier_branches": ["try"],
   "mail_real_author": true,
