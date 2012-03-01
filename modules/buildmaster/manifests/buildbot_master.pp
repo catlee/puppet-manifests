@@ -57,6 +57,7 @@ define buildmaster::buildbot_master($basedir, $master_type, $http_port) {
             content => template("buildmaster/passwords.py.erb");
 
         "$full_master_dir/master/postrun.cfg":
+            require => Exec["setup-$basedir"],
             owner => $master_user,
             group => $master_group,
             mode => 600,
