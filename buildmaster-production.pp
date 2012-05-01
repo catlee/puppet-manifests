@@ -5,7 +5,7 @@
 # For passwords, etc.
 import "secrets.pp"
 
-$puppetServer = "master-puppet1.build.mozilla.org"
+$puppetServer = "master-puppet1.build.scl1.mozilla.com"
 $level = "production"
 $httproot = "http://${puppetServer}/${level}"
 
@@ -21,7 +21,13 @@ node "masternode" {
     # This is supposedly fixed in puppet 0.25, so worth revisiting this once we
     # upgrade
     $slaveType = "master"
-    include packages
+    # The packages module includes a file we require for some other checks
+    # on CentOS. There's no equivalent necessary on Mac.
+    case $operatingsystem {
+        CentOS: {
+            include packages
+        }
+    }
     include ntp
 }
 
@@ -191,7 +197,13 @@ node "buildbot-master20" inherits "masternode" {
 }
 
 node "buildbot-master21" inherits "masternode" {
-    $num_masters = 0
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm21-tests1-macosx":
+            http_port => 8201,
+            master_type => "tests",
+            basedir => "tests1-macosx";
+    }
 }
 
 node "buildbot-master22" inherits "masternode" {
@@ -254,6 +266,76 @@ node "buildbot-master27" inherits "masternode" {
     }
 }
 
+node "buildbot-master30" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm30-build1":
+            http_port => 8001,
+            master_type => "build",
+            basedir => "build1";
+    }
+}
+
+node "buildbot-master31" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm31-try1":
+            http_port => 8101,
+            master_type => "try",
+            basedir => "try1";
+    }
+}
+
+node "buildbot-master32" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm32-build1":
+            http_port => 8001,
+            master_type => "build",
+            basedir => "build1";
+    }
+}
+
+node "buildbot-master33" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm33-try1":
+            http_port => 8101,
+            master_type => "try",
+            basedir => "try1";
+    }
+}
+
+node "buildbot-master34" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm34-build1":
+            http_port => 8001,
+            master_type => "build",
+            basedir => "build1";
+    }
+}
+
+node "buildbot-master35" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm35-try1":
+            http_port => 8101,
+            master_type => "try",
+            basedir => "try1";
+    }
+}
+
+node "buildbot-master36" inherits "masternode" {
+    $num_masters = 1
+    buildmaster::buildbot_master {
+        "bm36-build1":
+            http_port => 8001,
+            master_type => "build",
+            basedir => "build1";
+    }
+}
+
 node "dev-master01" inherits "masternode" {
     $num_masters = 0
     # This is a development machine
@@ -262,6 +344,22 @@ node "dev-master01" inherits "masternode" {
 
     # use LDAP and SSH keys for user-specific logins
     include userlogins
+
+    mount {
+        "builds":
+            name   => "/builds",
+            atboot => true,
+            device => "/dev/vdb1",
+            ensure => "mounted",
+            fstype => "ext3",
+    }
+}
+
+node "preproduction-master" inherits "masternode" {
+    $num_masters = 0
+    # This is a preproduction machine
+    # Install all the prereqs of buildbot, but don't actually instantiate any masters
+    include buildmaster
 }
 
 node "releng-mirror01" inherits "masternode" {
@@ -290,11 +388,31 @@ node "buildapi01" inherits "masternode" {
 }
 
 node "signing1" inherits "masternode" {
+    $signing_formats = ["gpg", "signcode", "mar"]
     include releng::master
     include signingserver
 }
 
 node "signing2" inherits "masternode" {
+    $signing_formats = ["gpg", "signcode", "mar"]
+    include releng::master
+    include signingserver
+}
+
+node "signing3" inherits "masternode" {
+    $signing_formats = ["gpg", "signcode", "mar"]
+    include releng::master
+    include signingserver
+}
+
+node "mac-signing1" inherits "masternode" {
+    $signing_formats = ["gpg", "dmg", "mar"]
+    include releng::master
+    include signingserver
+}
+
+node "mac-signing2" inherits "masternode" {
+    $signing_formats = ["gpg", "dmg", "mar"]
     include releng::master
     include signingserver
 }

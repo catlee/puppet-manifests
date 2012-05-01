@@ -19,6 +19,34 @@ node "ix-vm-test01" inherits "centos5-i686-build" {
     include buildslave, ix
 }
 
+node "eval-mini-1" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-001" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-002" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-003" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-004" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-005" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
+node "r5-mini-006" inherits "darwin11-x86_64-build" {
+    include staging-buildslave
+}
+
 node "ix-vm-test02" inherits "centos5-i686-build" {
     include buildslave, ix
 }
@@ -66,6 +94,14 @@ node "linux-ix-slave05" inherits "centos5-i686-build" {
 
 node "moz2-linux-slave51" inherits "centos5-i686-build" {
     include staging-buildslave, vm
+}
+
+node "linux64-ix-slave01" inherits "centos5-x86_64-build" {
+    include staging-buildslave, ix
+}
+
+node "linux64-ix-slave02" inherits "centos5-x86_64-build" {
+    include staging-buildslave, ix
 }
 
 node "moz2-darwin9-slave03" inherits "darwin9-i386-build" {

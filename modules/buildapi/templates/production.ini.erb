@@ -26,7 +26,7 @@ cache_dir = %(here)s/data
 beaker.session.key = buildapi
 beaker.session.secret = <%=scope.lookupvar('secrets::buildapi_session_secret')%>
 
-allowed_origins = https://tbpl.mozilla.org http://tbpl.mozilla.org http://tbpl.allizom.org http://tests.themasta.com http://dev.philringnalda.com http://bbpl.dbaron.org http://tbpl.mcc.id.au http://ehsanakhgari.org http://tbpl.swatinem.de
+allowed_origins = https://tbpl.mozilla.org http://tbpl.mozilla.org http://tbpl.allizom.org http://tests.themasta.com http://dev.philringnalda.com http://bbpl.dbaron.org http://tbpl.mcc.id.au http://ehsanakhgari.org http://tbpl.swatinem.de https://tbpl-dev.allizom.org
 
 # SQLAlchemy database URL and connection settings
 sqlalchemy.scheduler_db.url = mysql://<%=scope.lookupvar('secrets::buildapi_schedulerdb_user')%>:<%=scope.lookupvar('secrets::buildapi_schedulerdb_password')%>@<%=scope.lookupvar('secrets::buildapi_schedulerdb_host')%>/<%=scope.lookupvar('secrets::buildapi_schedulerdb_database')%>
@@ -43,17 +43,16 @@ set debug = false
 # Carrot exchange parameters
 carrot.hostname = <%=scope.lookupvar('secrets::buildapi_rmq_host')%>
 carrot.exchange = buildapi.control
-carrot.consumer.queue = buildapi-web
+carrot.consumer.queue = buildapi-web2
 carrot.userid = buildapi
 carrot.password = <%=scope.lookupvar('secrets::buildapi_rmq_password')%>
 carrot.vhost = /buildapi
 
 # Where the various masters are
-master_list = production-masters.json
 masters_url = http://hg.mozilla.org/build/tools/raw-file/default/buildfarm/maintenance/production-masters.json
 
-# What branches to handle
-branches = mozilla-central, mozilla-2.1, mozilla-2.0, mozilla-1.9.2, mozilla-1.9.1, jaegermonkey, try, maple, cedar, birch, places, build-system, mozilla-beta, mozilla-aurora, devtools, graphics, services-central, alder, holly, larch, accessibility, profiling, mozilla-inbound, ux, mozilla-release, electrolysis, fx-team, ionmonkey
+# What branches we accept
+branches_url = http://hg.mozilla.org/build/tools/raw-file/default/buildfarm/maintenance/production-branches.json
 
 # What timezone we're in
 timezone = US/Pacific

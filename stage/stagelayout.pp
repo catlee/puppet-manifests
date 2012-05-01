@@ -34,6 +34,7 @@ class stagelayout {
             mode => 775;
         ["/builds/data/ftp/pub/firefox",
         "/builds/data/ftp/pub/firefox/nightly",
+        "/builds/data/ftp/pub/firefox/candidates",
         "/builds/data/ftp/pub/firefox/releases",
         "/builds/data/ftp/pub/firefox/tinderbox-builds"]:
             ensure => directory,
@@ -47,6 +48,7 @@ class stagelayout {
             mode => 775;
         ["/home/ftp/pub/thunderbird",
          "/home/ftp/pub/thunderbird/nightly",
+         "/home/ftp/pub/thunderbird/candidates",
          "/home/ftp/pub/thunderbird/releases",
          "/home/ftp/pub/thunderbird/tinderbox-builds"]:
             ensure => directory,
@@ -61,6 +63,13 @@ class stagelayout {
         ["/builds/data/ftp/pub/mobile/candidates",
         "/builds/data/ftp/pub/mobile/nightly",
         "/builds/data/ftp/pub/mobile/tinderbox-builds"]:
+            ensure => directory,
+            owner => "ffxbld",
+            group => "firefox",
+            mode => 755;
+        ["/builds/data/ftp/pub/b2g",
+        "/builds/data/ftp/pub/b2g/nightly",
+        "/builds/data/ftp/pub/b2g/tinderbox-builds"]:
             ensure => directory,
             owner => "ffxbld",
             group => "firefox",
@@ -109,6 +118,9 @@ class stagelayout {
             force => true;
         "/var/www/html/pub/mozilla.org/mobile":
             ensure => "/home/ftp/pub/mobile",
+            force => true;
+        "/var/www/html/pub/mozilla.org/b2g":
+            ensure => "/home/ftp/pub/b2g",
             force => true;
         "/var/www/html/pub/mozilla.org/thunderbird":
             ensure => "/home/ftp/pub/thunderbird",

@@ -7,6 +7,7 @@ define nagios::install::plugin() {
     $plugin_name = $title
 
     $libdir = $hardwaremodel ? {
+        i386   => "lib",
         i686   => "lib",
         x86_64 => "lib64"
     }
@@ -23,15 +24,22 @@ define nagios::install::plugin() {
 class nagios::install {
     case $operatingsystem {
         CentOS: {
+            $centosTag = $operatingsystemrelease ? {
+                "5"   => "el5",
+                "5.0"   => "el5",
+                "5.5" => "el5",
+                "5.8" => "el5",
+                "6.2" => "el6",
+            }
             case $slaveType {
-                master: {
+                master, stage: {
                     package {
                         "nrpe":
-                            ensure => "2.12-16.el5";
+                            ensure => "2.12-16.${centosTag}";
                         "nagios-plugins-nrpe":
-                            ensure => "2.12-16.el5";
+                            ensure => "2.12-16.${centosTag}";
                         "nagios-plugins-all":
-                            ensure => "1.4.15-2.el5";
+                            ensure => "1.4.15-2.${centosTag}";
                     }
                 }
                 build: {
@@ -51,20 +59,38 @@ class nagios::install {
             }
         }
         Darwin: {
-            install_dmg {
-                "nrpe-i386.dmg":
-                    creates => "/usr/local/nagios-i386/sbin/nrpe";
-            }
+            case $slaveType {
+                master: {
+                    package {
+                        "nrpe-i386.dmg":
+                            ensure => installed,
+                            provider => pkgdmg,
+                            source => "${httproot}/Darwin10/nrpe-i386.dmg";
+                    }
+                }
+                default: {
+                    package {
+                        "nrpe-i386.dmg":
+                            ensure => installed,
+                            provider => pkgdmg,
+                            source => "${platform_httproot}/DMGs/nrpe-i386.dmg";
+                    }
+               }
+           }
         }
     }
 
     # install plugins
     case $slaveType {
         master: {
-            nagios::install::plugin {
-                "check_http_redirect_ip": ;
-                "check_ganglia":
-                    require => Class["ganglia::client"];
+            case $operatingsystem {
+                CentOS: {
+                    nagios::install::plugin {
+                        "check_http_redirect_ip": ;
+                        "check_ganglia":
+                            require => Class["ganglia::client"];
+                    }
+                }
             }
         }
     }

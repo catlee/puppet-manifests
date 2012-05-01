@@ -21,13 +21,6 @@ node "linux64-ix-ref" inherits "centos5-x86_64-build" {
     include buildslave, ix
 }
 
-node "linux64-ix-slave01" inherits "centos5-x86_64-build" {
-    include buildslave, ix
-}
-
-node "linux64-ix-slave02" inherits "centos5-x86_64-build" {
-    include buildslave, ix
-}
 node "linux64-ix-slave03" inherits "centos5-x86_64-build" {
     include buildslave, ix
 }
@@ -1458,10 +1451,6 @@ node "talos-r4-snow-080" inherits "darwin10-i386-test" {
     include talos_osx_rev4
 }
 
-node "talos-r4-snow-081" inherits "darwin10-i386-test" {
-    include talos_osx_rev4
-}
-
 node "talos-r4-snow-082" inherits "darwin10-i386-test" {
     include talos_osx_rev4
 }
@@ -1807,10 +1796,6 @@ node "talos-r4-lion-081" inherits "darwin11-x86_64-test" {
 }
 
 node "talos-r4-lion-082" inherits "darwin11-x86_64-test" {
-    include talos_osx_rev4
-}
-
-node "talos-r4-lion-083" inherits "darwin11-x86_64-test" {
     include talos_osx_rev4
 }
 
