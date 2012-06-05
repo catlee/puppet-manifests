@@ -20,7 +20,12 @@ import "gui"
 node "linux64-ix-ref" inherits "centos5-x86_64-build" {
     include buildslave, ix
 }
-
+node "linux64-ix-slave01" inherits "centos5-x86_64-build" {
+    include buildslave, ix
+}
+node "linux64-ix-slave02" inherits "centos5-x86_64-build" {
+    include staging-buildslave, ix
+}
 node "linux64-ix-slave03" inherits "centos5-x86_64-build" {
     include buildslave, ix
 }
@@ -346,7 +351,7 @@ node "talos-r3-fed-009" inherits "fedora12-i686-test" {
 node "talos-r3-fed-011" inherits "fedora12-i686-test" {
     include talosslave
 }
-
+ 
 node "talos-r3-fed-012" inherits "fedora12-i686-test" {
     include talosslave
 }
@@ -887,6 +892,14 @@ node "talos-r3-leopard-ref" inherits "darwin9-i386-test" {
     include talosslave
 }
 
+node "talos-r3-leopard-001" inherits "darwin9-i386-test" {
+    include talosslave
+}
+
+node "talos-r3-leopard-002" inherits "darwin9-i386-test" {
+    include talosslave
+}
+ 
 node "talos-r3-leopard-003" inherits "darwin9-i386-test" {
     include talosslave
 }
@@ -912,6 +925,10 @@ node "talos-r3-leopard-008" inherits "darwin9-i386-test" {
 }
 
 node "talos-r3-leopard-009" inherits "darwin9-i386-test" {
+    include talosslave
+}
+ 
+node "talos-r3-leopard-010" inherits "darwin9-i386-test" {
     include talosslave
 }
 
@@ -1143,6 +1160,18 @@ node "talos-r4-snow-ref" inherits "darwin10-i386-test" {
     include talos_osx_rev4
 }
 
+node "talos-r4-snow-001" inherits "darwin10-i386-test" {
+    include talos_osx_rev4
+}
+
+node "talos-r4-snow-002" inherits "darwin10-i386-test" {
+    include talos_osx_rev4
+}
+ 
+node "talos-r4-snow-003" inherits "darwin10-i386-test" {
+    include talos_osx_rev4
+}
+ 
 node "talos-r4-snow-004" inherits "darwin10-i386-test" {
     include talos_osx_rev4
 }
@@ -1460,10 +1489,6 @@ node "talos-r4-snow-083" inherits "darwin10-i386-test" {
 }
 
 node "talos-r4-snow-084" inherits "darwin10-i386-test" {
-    include talos_osx_rev4
-}
-
-node "talos-r4-snow-085" inherits "darwin10-i386-test" {
     include talos_osx_rev4
 }
 
@@ -1803,10 +1828,6 @@ node "talos-r4-lion-084" inherits "darwin11-x86_64-test" {
     include talos_osx_rev4
 }
 
-node "talos-r4-lion-085" inherits "darwin11-x86_64-test" {
-    include talos_osx_rev4
-}
-
 node "linux-hgwriter-slave03" inherits "centos5-i686-build" {
     include buildslave, kvm
 }
@@ -1833,5 +1854,29 @@ node "byob-repack04" inherits "byob-repack" {
 
 node "byob-repack05" inherits "byob-repack" {
     include byob-repackslave
+}
+
+node "r5-mini-001" inherits "darwin11-x86_64-build" {
+    include buildslave
+    }
+
+node "r5-mini-002" inherits "darwin11-x86_64-build" {
+    include buildslave
+    }
+
+node "r5-mini-003" inherits "darwin11-x86_64-build" {
+        include buildslave
+}
+
+node "r5-mini-004" inherits "darwin11-x86_64-build" {
+        include buildslave
+}
+
+node "r5-mini-005" inherits "darwin11-x86_64-build" {
+        include buildslave
+}
+
+node "r5-mini-006" inherits "darwin11-x86_64-build" {
+        include buildslave
 }
 
