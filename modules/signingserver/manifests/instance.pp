@@ -52,7 +52,7 @@ define signingserver::instance($listenaddr, $port, $code_tag, $user,
     $new_token_allowed_ips = $secrets::network::masterIPs
     $signscript = "$basedir/bin/python2.6 $script_dir/signscript.py -c $basedir/signscript.ini"
     $mar_cmd = "$basedir/bin/signmar -d $basedir/secrets/mar -n $mar_key_name -s"
-    $b2gmar_cmd = "$basedir/bin/b2gsignmar -d $basedir/secrets/b2gmar -n0 $b2g_key0 -n1 $b2g_key1 -n2 $b2g_key2 -s"
+    $b2gmar_cmd = "$basedir/bin/signmar -d $basedir/secrets/b2gmar -n0 $b2g_key0 -n1 $b2g_key1 -n2 $b2g_key2 -s"
     $testfile_signcode = "$testfile_dir/test.exe"
     $testfile_mar = "$testfile_dir/test.mar"
     $testfile_gpg = "$testfile_dir/test.mar"
@@ -129,10 +129,6 @@ define signingserver::instance($listenaddr, $port, $code_tag, $user,
             file {
                 "$basedir/bin/signmar":
                     source => "puppet:///modules/signingserver/signmar",
-                    mode => 755,
-                    require => Exec["$basedir-virtualenv"];
-                "$basedir/bin/b2gsignmar":
-                    source => "puppet:///modules/signingserver/b2gsignmar",
                     mode => 755,
                     require => Exec["$basedir-virtualenv"];
             }
