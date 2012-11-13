@@ -39,6 +39,7 @@ class signingserver {
                    file {
                         # Make sure jarsigner is in $PATH for signing
                         "/usr/local/bin/jarsigner":
+                            require => Package["jdk1.6"],
                             ensure => "/tools/jdk-1.6.0_17/bin/jarsigner";
                    }
                 }
